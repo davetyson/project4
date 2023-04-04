@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "../styles/form.css";
 
 const Form = () => {
     const [movieData, setMovieData] = useState([]);
@@ -199,11 +200,11 @@ const Form = () => {
     // console.log(bookError);
     // console.log(componentRender);
 
-    // const movieHandleSelect = () => {
+    // const movieHandleSelected = () => {
         
     // }
 
-    // const bookHandleSelect = () => {
+    // const bookHandleSelected = () => {
         
     // }
 
