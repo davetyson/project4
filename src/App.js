@@ -1,17 +1,10 @@
-// Import components
-import Footer from './components/Footer';
-
-// Import CSS
-import './App.css';
+import './styles/App.css';
+import './styles/global.css';
+import Container from './components/Container.js';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-       Is the Book Better?
-      </header>
-      <Footer />
-    </div>
+      <Container/>
   );
 }
 
