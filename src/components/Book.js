@@ -1,17 +1,10 @@
-<<<<<<< HEAD
-import './styles/media.css';
-import './styles/global.css';
-
-import { useState } from 'react';
-=======
 import '../styles/media.css';
 import '../styles/global.css';
 
 import { useState } from 'react';
 import placeholder from '../assets/placeHolder.png'
->>>>>>> development
 
-const Movie = (props) => {
+const Book = (props) => {
 
     // this userMovie useState would need to be something that lives in Form, and then is passed down to this Movie child. That way, inside Form, we have access to both the userMovie and the userBook (when we create that in the Book component). Form can then see when userMovie and userBook are true, and when both are true, it can send the information down to the "results" component to run the animation
 
@@ -19,34 +12,27 @@ const Movie = (props) => {
 
     // userMovie & userBook set to false when there is a new search run
 
-    const [ userMovie, setUserMovie ] = useState(false);
-<<<<<<< HEAD
-
-    return (
-        <h3>Movies!!</h3>
-        // ternery: if the userMovie is set to false, then show:
-            // a list of movies from the API data in the parent Form element
-            // map out a new array of li's within a ul that all have the same formatting (maybe spotify style, with image on left, title middle, year right)
-=======
+    const [ userBook, setUserBook ] = useState(false);
     console.log(props);
     return (
        <>
-        <h3>Movies</h3>
+        <h3>Books</h3>
         
-        <ul> 
-                {props.movieData.map((movie) => {
+        
+            <ul> 
+                {props.bookData.map((book) => {
                 return(
-                    <li key={movie.id}>       
-                        <h4>{movie.title}</h4>
-                        <h5>{movie.author}</h5>
-                        <h5>{movie.description}</h5>
+                    <li key={book.id}>       
+                        <h4>{book.title}</h4>
+                        <h5>{book.author}</h5>
+                        <h5>{book.description}</h5>
                         <h5>
-                            {movie.image === null? <img src={placeholder} alt="no image found"/>:
-                        <img src={movie.image} alt={movie.title}/>}</h5>
+                            {book.image === null? <img src={placeholder} alt="no image found"/>:
+                        <img src={book.image} alt={book.title}/>}</h5>
                         
-                        <h5>{movie.rating}</h5>
-                        <h5>{movie.published}</h5>
-                        <h5>{movie.voteCount}</h5>
+                        <h5>{book.rating}</h5>
+                        <h5>{book.published}</h5>
+                        <h5>{book.voteCount}</h5>
                     </li> 
                     )
             
@@ -56,12 +42,11 @@ const Movie = (props) => {
         
         </>
 
-        // li {movieArrayData[0]}
+        // li {bookArrayData[0]}
 
         // ternery: if the userMovie is set to false, then show:
             // a list of movies from the API data in the parent Form element
             // map out a new array of li's within a ul that all have the same formatting
->>>>>>> development
             // allow each li to be clickable and each one would change the userMovie state to true when pressed
         // if userMovie is not set to false (aka true) then show:
             // movie data!
@@ -71,13 +56,9 @@ const Movie = (props) => {
                 // tagline
                 // description
                 // rating
-<<<<<<< HEAD
             // anything else we want to show with a movie? could be a ternary message that says "not as good as the book" or "better than the book" depending on result
-=======
-            // anything else we want to show with a movie? could be a ternary message that says "not as good as the movie" or "better than the movie" depending on result
->>>>>>> development
         // end of ternery
     );
 };
 
-export default Movie;
+export default Book;
