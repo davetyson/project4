@@ -1,4 +1,5 @@
 import './App.css';
+import Form from './components/Form.js';
 
 function App() {
   return (
@@ -6,6 +7,8 @@ function App() {
       <header className="App-header">
        Is the Book Better?
       </header>
+
+      <Form />
     </div>
   );
 }
