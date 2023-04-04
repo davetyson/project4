@@ -88,11 +88,20 @@ const Form = () => {
 
                     const sortedArray = movieArrayData.sort((a, b) => b.voteCount - a.voteCount);
                     const newSortedArray = [];
-                    for(let i = 0; i < 10; i++) {
-                        newSortedArray.push(sortedArray[i]);
+                    
+                    if(sortedArray.length >= 10) {
+                        for(let i = 0; i < 10; i++) {
+                            newSortedArray.push(sortedArray[i]);
+                        }
                     }
+                    else {
+                        for(let i = 0; i < sortedArray.length; i++) {
+                            newSortedArray.push(sortedArray[i]);
+                        }
+                    }
+                    
 
-                    // setMovieData(movieArrayData);
+                    setMovieData(movieArrayData);
                     // console.log(movieArrayData);
                     setUserInput("");
                     setMovieError(false);
