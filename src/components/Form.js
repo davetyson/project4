@@ -228,7 +228,6 @@ const Form = () => {
                         <Book bookData={bookData} bookError={bookError} />
                         <Movie movieData={movieData} movieError={movieError}/>
                     </div>
-                    
             }
             
         </div>
