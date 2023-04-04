@@ -1,5 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
+import Book from "./Book";
+import Movie from "./Movie";
+// import "../styles/form.css";
 
 const Form = () => {
     const [movieData, setMovieData] = useState([]);
@@ -49,25 +52,54 @@ const Form = () => {
                         // console.log(index);
                         // console.log(movieDataObj[index]);
 
-                        const newMovieRating = (movieDataObj[index].vote_average / 10) * 100;
+                        //handle the movie rating in case the title has no rating
+                        let newMovieRating = "";
+                        if(movieDataObj[index].vote_average) {
+                            newMovieRating = (movieDataObj[index].vote_average / 10) * 100;
+                        
+                        }
+                        else {
+                            newMovieRating = 0;
+                        }
                         // console.log(newMovieRating);
 
+                        //handle the movie vote count in case the title has no votes
+                        let newMovieVotes = "";
+                        if(movieDataObj[index].vote_count) {
+                            newMovieVotes = movieDataObj[index].vote_count;
+                        
+                        }
+                        else {
+                            newMovieVotes = 0;
+                        }
+                                          
                         const newMovieObj = {
+                            id: movieDataObj[index].id,
                             title: movieDataObj[index].title,
                             description: movieDataObj[index].overview,
                             image: "https://image.tmdb.org/t/p/w500"+movieDataObj[index].poster_path,
                             rating: newMovieRating,
                             published: movieDataObj[index].release_date,
-                            voteCount: movieDataObj[index].vote_count
+                            voteCount: newMovieVotes
                         }
 
                         movieArrayData.push(newMovieObj);
                     }
 
+                    // console.log(movieArrayData.sort((a, b) => b.voteCount - a.voteCount));
+
+                    const sortedArray = movieArrayData.sort((a, b) => b.voteCount - a.voteCount);
+                    const newSortedArray = [];
+                    for(let i = 0; i < 10; i++) {
+                        newSortedArray.push(sortedArray[i]);
+                    }
+
                     setMovieData(movieArrayData);
-                    console.log(movieArrayData);
+                    // console.log(movieArrayData);
                     setUserInput("");
                     setMovieError(false);
+
+                    console.log(newSortedArray);
                 }
                 else {
                     console.log("don't exist");
@@ -84,13 +116,13 @@ const Form = () => {
                 }
             })
             .then(apiDataBook => {
-                console.log(apiDataBook.data.totalItems);
+                // console.log(apiDataBook.data.totalItems);
 
                 if(apiDataBook.data.totalItems !== 0) {
-                    console.log("exists");
+                    // console.log("exists");
                     setComponentRender(true);
 
-                    console.log(apiDataBook.data.items);
+                    // console.log(apiDataBook.data.items);
                     
                     // TODO - take a look into API docs and figure out what to do when I receive multiple books back
                     const bookDataObj = apiDataBook.data.items;
@@ -100,41 +132,55 @@ const Form = () => {
 
                     for(let index in bookDataObj) {
 
-                        console.log(bookDataObj[index]);
+                        // console.log(bookDataObj[index]);
 
+                        // handle the book rating in case the book has no rate
                         let newBookRating = "";
                         if(bookDataObj[index].volumeInfo.averageRating) {
                             newBookRating = (bookDataObj[index].volumeInfo.averageRating / 5) * 100;
                         }                    
                         else {
-                            newBookRating = "No ratting found";                                                
+                            newBookRating = 0;                                                
                         }
 
+                        //handle the book vote count in case the title has no votes
+                        let newBookVotes = "";
+                        if(bookDataObj[index].volumeInfo.ratingsCount) {
+                            newBookVotes = bookDataObj[index].volumeInfo.ratingsCount;                        
+                        }
+                        else {
+                            newBookVotes = 0;
+                        }
+
+                        //handle the book image in cse the book has no image
                         let bookImg = "";
                         if(bookDataObj[index].volumeInfo.imageLinks) {
-                            console.log("true");
+                            // console.log("true");
                             bookImg = bookDataObj[index].volumeInfo.imageLinks.thumbnail;
                         }
                         else {
-                            console.log("false");
+                            // console.log("false");
                             bookImg = null;
                         }
 
                         const newBookObj = {
+                            id: bookDataObj[index].id,
                             title: bookDataObj[index].volumeInfo.title,
                             author: bookDataObj[index].volumeInfo.authors,
                             description: bookDataObj[index].volumeInfo.description,
                             image: bookImg,
                             rating: newBookRating,
                             published: bookDataObj[index].volumeInfo.publishedDate,
-                            voteCount: bookDataObj[index].volumeInfo.ratingsCount
+                            voteCount: newBookVotes
                         }
 
                         bookArrayData.push(newBookObj);
                     }
 
-                    setBookData(bookArrayData);
-                    console.log(bookArrayData);
+                    console.log(bookArrayData.sort((a, b) => b.voteCount - a.voteCount));
+
+                    setBookData(bookArrayData.sort((a, b) => b.voteCount - a.voteCount));
+                    // console.log(bookArrayData);
                     setUserInput("");
                     setBookError(false);
 
@@ -156,6 +202,13 @@ const Form = () => {
     // console.log(bookError);
     // console.log(componentRender);
 
+    // const movieHandleSelected = () => {
+        
+    // }
+
+    // const bookHandleSelected = () => {
+        
+    // }
 
     return (
         <div>
@@ -170,32 +223,12 @@ const Form = () => {
                 ? <h2>Welcome</h2>
                 : movieError === true && bookError === true 
                     ? <h3>No Results</h3>
-                    : <div>
-                        <h2>Movie</h2>
-                        <h3>{movieData.title}</h3>
-                        <p>{movieData.description}</p>
-                        <p>{movieData.image}</p>
-                        <p>{movieData.rating}</p>
-                        <p>{movieData.published}</p>
-                        {
-                            movieError === true 
-                            ? <p>movie Error</p>
-                            : <p>movie Ok </p>
-                        }
-            
-                        <h2>Book</h2>
-                        <h3>{bookData.title}</h3>
-                        <p>{bookData.author}</p>
-                        <p>{bookData.description}</p>
-                        <p>{bookData.image}</p>
-                        <p>{bookData.rating}</p>
-                        <p>{bookData.published}</p>
-                        {
-                            bookError === true 
-                            ? <p>Book Error</p>
-                            : <p>Book Ok </p>
-                        }
+                    : 
+                    <div>
+                        <Book bookData={bookData} bookError={bookError} />
+                        <Movie movieData={movieData} movieError={movieError}/>
                     </div>
+                    
             }
             
         </div>
