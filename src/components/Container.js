@@ -1,4 +1,6 @@
 import'../styles/global.css';
+import Form from './Form.js';
+import Footer from './Footer.js';
 
 function Container() {
     return (
@@ -7,11 +9,13 @@ function Container() {
           test
         </header>
         <nav className="searchBar">
-            test
+            <Form />
         </nav>
         <main className="contentArea wrapper">
             test
         </main>
+
+        <Footer />
       </div>
     );
   }
