@@ -1,21 +1,19 @@
 import'../styles/global.css';
-import Form from './Form.js';
+import Header from './Header.js';
+import Form from './Form.js'
 import Footer from './Footer.js';
 
 function Container() {
     return (
       <div className="app">
-        <header>
-          test
-        </header>
+        <Header />
         <nav className="searchBar">
             <Form />
         </nav>
         <main className="contentArea wrapper">
-            test
+            <Footer />
         </main>
-
-        <Footer />
+        
       </div>
     );
   }

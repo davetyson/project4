@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import "../styles/form.css";
+import Book from "./Book.js";
+import Movie from "./Movie.js";
 
 const Form = () => {
     const [movieData, setMovieData] = useState([]);
@@ -70,12 +72,20 @@ const Form = () => {
                         else {
                             newMovieVotes = 0;
                         }
+
+                        let movieImg = "";
+                        if(movieDataObj[index].poster_path) {
+                            movieImg = "https://image.tmdb.org/t/p/w500"+movieDataObj[index].poster_path;
+                        }
+                        else {
+                            movieImg = null;
+                        }
                                           
                         const newMovieObj = {
                             id: movieDataObj[index].id,
                             title: movieDataObj[index].title,
                             description: movieDataObj[index].overview,
-                            image: "https://image.tmdb.org/t/p/w500"+movieDataObj[index].poster_path,
+                            image: movieImg,
                             rating: newMovieRating,
                             published: movieDataObj[index].release_date,
                             voteCount: newMovieVotes
@@ -230,34 +240,12 @@ const Form = () => {
                 ? <h2>Welcome</h2>
                 : movieError === true && bookError === true 
                     ? <h3>No Results</h3>
-                    : null
-                    // <div>
-                    //     <h2>Movie</h2>
-                    //     <h3>{movieData.title}</h3>
-                    //     <p>{movieData.description}</p>
-                    //     <p>{movieData.image}</p>
-                    //     <p>{movieData.rating}</p>
-                    //     <p>{movieData.published}</p>
-                    //     {
-                    //         movieError === true 
-                    //         ? <p>movie Error</p>
-                    //         : <p>movie Ok </p>
-                    //     }
-            
-                    //     <h2>Book</h2>
-                    //     <h3>{bookData.title}</h3>
-                    //     <p>{bookData.author}</p>
-                    //     <p>{bookData.description}</p>
-                    //     <p>{bookData.image}</p>
-                    //     <p>{bookData.rating}</p>
-                    //     <p>{bookData.published}</p>
-                    //     {
-                    //         bookError === true 
-                    //         ? <p>Book Error</p>
-                    //         : <p>Book Ok </p>
-                    //     }
-                    // </div>
-            }
+                    : <div>
+                        <Book bookData={bookData} bookError={bookError} />
+                        <Movie movieData={movieData} movieError={movieError}/>
+                      </div>
+        }
+                    
             
         </div>
         
