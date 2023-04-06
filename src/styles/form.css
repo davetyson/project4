@@ -1,5 +1,5 @@
 
-#root .app .searchBar .userInputForm {
+#root .app .searchBar #userInputForm {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/form.css";
 import Book from "./Book.js";
 import Movie from "./Movie.js";
+import Comparison from "./Comparison.js";
 
 const Form = () => {
     const [movieData, setMovieData] = useState([]);
@@ -11,7 +12,34 @@ const Form = () => {
     const [bookError, setBookError] = useState(false);
     const [userInput, setUserInput] = useState("");
     const [componentRender, setComponentRender] = useState(false);
-    const [generalError, setgeneralError] = useState(false);
+    // const [generalError, setgeneralError] = useState(false);
+    const [selectedMovie, setSelectedMovie] =useState("");
+    const [selectedBook, setSelectedBook] =useState("");
+    const [result, setResult] =useState("");
+
+
+    useEffect(() => {
+        // console.log(selectedMovie);
+        // console.log(selectedBook);
+
+        if(selectedMovie !== "" && selectedBook !== "") {
+            console.log("Results");
+
+            if(selectedMovie.rating > selectedBook.rating) {
+                console.log("Movie rules!");
+                setResult("movie");
+            }
+            else if(selectedMovie.rating < selectedBook.rating) {
+                console.log("The book is better!");
+                setResult("book");
+            }
+            else {
+                console.log("It's a Tie go for both!");
+                setResult("tie");
+            }
+        }
+
+    },[selectedMovie, selectedBook]);
 
 
     const handleChange = (e) => {
@@ -21,12 +49,12 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log("handleSubmit");
-
-        setComponentRender(true);
+        // console.log("handleSubmit"); 
 
         if(userInput.trim()) {
-            // Movie API request
+            // Movie API request 
+            setComponentRender(true);
+
             axios({
                 url: "https://api.themoviedb.org/3/search/movie",
                 params: {
@@ -38,8 +66,7 @@ const Form = () => {
                 // console.log(apiDataMovie.data.results[0]);
 
                 if(apiDataMovie.data.results) {
-                    // console.log("exists");
-                    setComponentRender(true);
+                    // console.log("exists");                    
                     
                     // TODO - take a look into API docs and figure out what to do when I receive multiple movies back
                     const movieDataObj = apiDataMovie.data.results;
@@ -111,12 +138,11 @@ const Form = () => {
                     }
                     
 
-                    setMovieData(movieArrayData);
+                    setMovieData(newSortedArray);
                     // console.log(movieArrayData);
                     setUserInput("");
                     setMovieError(false);
-
-                    console.log(newSortedArray);
+                    // console.log(newSortedArray);
                 }
                 else {
                     console.log("don't exist");
@@ -194,8 +220,7 @@ const Form = () => {
                         bookArrayData.push(newBookObj);
                     }
 
-                    console.log(bookArrayData.sort((a, b) => b.voteCount - a.voteCount));
-
+                    // console.log(bookArrayData.sort((a, b) => b.voteCount - a.voteCount));
                     setBookData(bookArrayData.sort((a, b) => b.voteCount - a.voteCount));
                     // console.log(bookArrayData);
                     setUserInput("");
@@ -205,6 +230,7 @@ const Form = () => {
                 else {
                     console.log("don't exist");
                     setBookError(true);
+                    setComponentRender(false);
                 }
             });
 
@@ -219,13 +245,48 @@ const Form = () => {
     // console.log(bookError);
     // console.log(componentRender);
 
-    // const movieHandleSelected = () => {
-        
-    // }
+    const movieHandleSelected = (e) => {
+        // console.log(parseInt(e.target.parentElement.id));
+        // const movieId = parseInt(e.target.parentElement.id);
+        // console.log(movieData);
 
-    // const bookHandleSelected = () => {
-        
-    // }
+        movieData.forEach((item) => {            
+            // console.log(item.id);
+            if(item.id === parseInt(e.target.parentElement.id)) {                
+                const newMovieSelected = {
+                    id: item.id,
+                    title: item.title,
+                    description: item.description,
+                    image: item.image,
+                    rating: item.rating,
+                    published: item.published,
+                    voteCount: item.voteCount
+                }
+
+                setSelectedMovie(newMovieSelected);
+            }
+        });
+    }
+
+    const bookHandleSelected = (e) => {
+        // console.log(e.target.parentElement.id);
+
+        bookData.forEach((item) => {
+            if(item.id === e.target.parentElement.id) {
+                const newBookSelected = {
+                    id: item.id,
+                    title: item.title,
+                    description: item.description,
+                    image: item.image,
+                    rating: item.rating,
+                    published: item.published,
+                    voteCount: item.voteCount
+                }
+
+                setSelectedBook(newBookSelected);
+            }
+        });        
+    }
 
     return (
         <div>
@@ -241,14 +302,16 @@ const Form = () => {
                 : movieError === true && bookError === true 
                     ? <h3>No Results</h3>
                     : <div>
-                        <Book bookData={bookData} bookError={bookError} />
-                        <Movie movieData={movieData} movieError={movieError}/>
+                        <Book bookData={bookData} bookError={bookError} bookHandleSelected={bookHandleSelected} />
+                        <Movie movieData={movieData} movieError={movieError} movieHandleSelected={movieHandleSelected} />
+                        {
+                            result === ""
+                            ? null
+                            : <Comparison result={result} />
+                        }                        
                       </div>
-        }
-                    
-            
+        }   
         </div>
-        
     )
 }
 

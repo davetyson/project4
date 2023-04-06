@@ -1,10 +1,11 @@
 import '../styles/media.css';
 import '../styles/global.css';
-
 import { useState } from 'react';
 import placeholder from '../assets/placeHolder.png'
 
 const Movie = (props) => {
+
+    console.log(props.movieData.length);
 
     // this userMovie useState would need to be something that lives in Form, and then is passed down to this Movie child. That way, inside Form, we have access to both the userMovie and the userBook (when we create that in the Book component). Form can then see when userMovie and userBook are true, and when both are true, it can send the information down to the "results" component to run the animation
 
@@ -12,34 +13,41 @@ const Movie = (props) => {
 
     // userMovie & userBook set to false when there is a new search run
 
-    const [ userMovie, setUserMovie ] = useState(false);
+    // const [ userMovie, setUserMovie ] = useState(false);
     // console.log(props);
     return (
-       <>
-        <h3>Movies</h3>
-        
-        <ul> 
-                {props.movieData.map((movie) => {
-                return(
-                    <li key={movie.id}>       
-                        <h4>{movie.title}</h4>
-                        <h5>{movie.author}</h5>
-                        <h5>{movie.description}</h5>
-                        <h5>
-                            {movie.image === null? <img src={placeholder} alt="no image found"/>:
-                        <img src={movie.image} alt={movie.title}/>}</h5>
-                        
-                        <h5>{movie.rating}</h5>
-                        <h5>{movie.published}</h5>
-                        <h5>{movie.voteCount}</h5>
-                    </li> 
-                    )
+      
+        props.movieData.length === 0
+        ? null
+        : <>
+            <h3>Movies</h3>
             
-                })
-            }
-        </ul>
-        
+            <ul onClick={((e) => props.movieHandleSelected(e))}> 
+                    {props.movieData.map((movie) => {
+                    return(
+                        <li key={movie.id} id={movie.id}>       
+                            <h4>{movie.title}</h4>
+                            <h5>{movie.author}</h5>
+                            <h5>{movie.description}</h5>
+                            
+                            {
+                                movie.image === null
+                                ? <img src={placeholder} alt="no image found"/>
+                                : <img src={movie.image} alt={movie.title}/>
+                            }
+                            
+                            <h5>{movie.rating}</h5>
+                            <h5>{movie.published}</h5>
+                            <h5>{movie.voteCount}</h5>
+                        </li> 
+                        )
+                
+                    })
+                }
+            </ul>        
         </>
+        
+       
 
         // li {movieArrayData[0]}
 

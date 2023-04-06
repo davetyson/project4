@@ -19,16 +19,19 @@ const Book = (props) => {
         <h3>Books</h3>
         
         
-            <ul> 
+            <ul onClick={((e) => props.bookHandleSelected(e))}> 
                 {props.bookData.map((book) => {
                 return(
-                    <li key={book.id}>       
+                    <li key={book.id} id={book.id}>       
                         <h4>{book.title}</h4>
                         <h5>{book.author}</h5>
                         <h5>{book.description}</h5>
-                        <h5>
-                            {book.image === null? <img src={placeholder} alt="no image found"/>:
-                        <img src={book.image} alt={book.title}/>}</h5>
+                        
+                        {
+                            book.image === null
+                            ? <img src={placeholder} alt="no image found"/>
+                            : <img src={book.image} alt={book.title}/>
+                        }
                         
                         <h5>{book.rating}</h5>
                         <h5>{book.published}</h5>

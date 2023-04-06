@@ -11,7 +11,7 @@ function Container() {
             <Form />
         </nav>
         <main className="contentArea wrapper">
-            <Footer />
+            
         </main>
         
       </div>
