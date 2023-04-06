@@ -1,16 +1,8 @@
 import '../styles/media.css';
 import '../styles/global.css';
-
-import { useState } from 'react';
 import placeholder from '../assets/placeHolder.png'
 
 const Book = (props) => {
-
-    // const [ userBook, setUserBook ] = useState(false);
-
-    const handleUserChoice = () => {
-        console.log("this onClick can set the data from the user's media choice to compare for the final results!");
-    };
 
     return (
        <>
@@ -20,15 +12,15 @@ const Book = (props) => {
                 </li>
                 {props.bookData.slice(0, 3).map((book) => {
                 return(
-                    <li key={book.id} className="mediaLi">
-                        <button onClick={handleUserChoice}>
-                            <div className="mediaBox">  
-                                <figure className="listImg">
+                    <li key={book.id} className="mediaLi" id={book.id}>
+                        <button onClick={(e) => props.bookHandleSelected(e)}>
+                            <div id={book.id} className="mediaBox">  
+                                <figure id={book.id} className="listImg">
                                     {book.image === null
-                                    ? <img src={placeholder} alt="no image found"/>
+                                    ? <img src={placeholder} alt="no book cover found"/>
                                     : <img src={book.image} alt={book.title}/>}
                                 </figure>
-                                <div className="listTitleSort">
+                                <div id={book.id} className="listTitleSort">
                                     <h4>{book.title}</h4>
                                     <h5>{book.author}</h5>
                                     <h5 className="mediaListYear">{book.published}</h5>
