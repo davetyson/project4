@@ -66,9 +66,8 @@ const Form = () => {
                 // console.log(apiDataMovie.data.results[0]);
 
                 if(apiDataMovie.data.results) {
-                    // console.log("exists");                    
+                    // console.log("exists");     
                     
-                    // TODO - take a look into API docs and figure out what to do when I receive multiple movies back
                     const movieDataObj = apiDataMovie.data.results;
                     // console.log(movieDataObj.vote_average);
 
@@ -142,7 +141,7 @@ const Form = () => {
                     // console.log(movieArrayData);
                     setUserInput("");
                     setMovieError(false);
-                    // console.log(newSortedArray);
+                    console.log(newSortedArray);
                 }
                 else {
                     console.log("don't exist");
@@ -165,9 +164,8 @@ const Form = () => {
                     // console.log("exists");
                     setComponentRender(true);
 
-                    // console.log(apiDataBook.data.items);
+                    // console.log(apiDataBook.data.items);                    
                     
-                    // TODO - take a look into API docs and figure out what to do when I receive multiple books back
                     const bookDataObj = apiDataBook.data.items;
                     // console.log(bookDataObj);
 
@@ -220,7 +218,7 @@ const Form = () => {
                         bookArrayData.push(newBookObj);
                     }
 
-                    // console.log(bookArrayData.sort((a, b) => b.voteCount - a.voteCount));
+                    console.log(bookArrayData.sort((a, b) => b.voteCount - a.voteCount));
                     setBookData(bookArrayData.sort((a, b) => b.voteCount - a.voteCount));
                     // console.log(bookArrayData);
                     setUserInput("");

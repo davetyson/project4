@@ -5,7 +5,7 @@ import placeholder from '../assets/placeHolder.png'
 
 const Movie = (props) => {
 
-    console.log(props.movieData.length);
+    // console.log(props.movieData.length);
 
     // this userMovie useState would need to be something that lives in Form, and then is passed down to this Movie child. That way, inside Form, we have access to both the userMovie and the userBook (when we create that in the Book component). Form can then see when userMovie and userBook are true, and when both are true, it can send the information down to the "results" component to run the animation
 
@@ -46,8 +46,6 @@ const Movie = (props) => {
                 }
             </ul>        
         </>
-        
-       
 
         // li {movieArrayData[0]}
 
