@@ -1,40 +1,43 @@
 import '../styles/media.css';
 import '../styles/global.css';
 import placeholder from '../assets/placeHolder.png'
+import UserMedia from './UserMedia';
 
 const Book = (props) => {
 
+    console.log(props.selectedBook);
+
     return (
        <>
-            <ul> 
-                <li className="mediaLi">
-                    <h3 className="mediaTitle">Books</h3>
-                </li>
-                {props.bookData.slice(0, 3).map((book) => {
-                return(
-                    <li key={book.id} className="mediaLi" id={book.id}>
-                        <button onClick={(e) => props.bookHandleSelected(e)}>
-                            <div id={book.id} className="mediaBox">  
-                                <figure id={book.id} className="listImg">
-                                    {book.image === null
-                                    ? <img src={placeholder} alt="no book cover found"/>
-                                    : <img src={book.image} alt={book.title}/>}
-                                </figure>
-                                <div id={book.id} className="listTitleSort">
-                                    <h4>{book.title}</h4>
-                                    <h5>{book.author}</h5>
-                                    <h5 className="mediaListYear">{book.published}</h5>
+            { props.selectedBook
+                ? <UserMedia selectedMovie={props.selectedBook} />
+                : <ul> 
+                    <li className="mediaLi">
+                        <h3 className="mediaTitle">Books</h3>
+                    </li>
+                    {props.bookData.slice(0, 3).map((book) => {
+                    return(
+                        <li key={book.id} className="mediaLi" id={book.id}>
+                            <button onClick={(e) => props.bookHandleSelected(e)}>
+                                <div id={book.id} className="mediaBox">  
+                                    <figure id={book.id} className="listImg">
+                                        {book.image === null
+                                        ? <img src={placeholder} alt="no book cover found"/>
+                                        : <img src={book.image} alt={book.title}/>}
+                                    </figure>
+                                    <div id={book.id} className="listTitleSort">
+                                        <h4>{book.title}</h4>
+                                        <h5>{book.author}</h5>
+                                        <h5 className="mediaListYear">{book.published}</h5>
+                                    </div>
+                                    <h5 className="mediaListDescription">{book.description}</h5>
                                 </div>
-                                <h5 className="mediaListDescription">{book.description}</h5>
-                            </div>
-                        </button>          
-                    </li> 
-                    )
-            
-                })
+                            </button>          
+                        </li> 
+                        )
+                    })}
+                </ul>
             }
-        </ul>
-        
         </>
 
         // li {bookArrayData[0]}

@@ -31,7 +31,7 @@ form button:hover {
     color: #FFF;
 }
 
-.formSuccessBox h3 {
+.formH3 {
     font-family: 'Roboto', sans-serif;
     font-size: 2rem;
     border: 1px solid #000;

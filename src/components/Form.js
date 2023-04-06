@@ -56,6 +56,9 @@ const Form = () => {
         // setMovieData("");
         // setMovieError("");
 
+        setSelectedBook("");
+        setSelectedMovie("");
+
         if(userInput.trim()) {
             // Movie API request 
             setComponentRender(true);
@@ -312,12 +315,12 @@ const Form = () => {
                         {bookData === "" && movieData === ""
                         ? null
                         : <div className="formSuccessBox">
-                            <h3>Choose one movie and one book to compare!</h3>
+                            <h3 className="mediaHelp">Choose one movie and one book to compare!</h3>
                             <div className="mediaListFlex">
-                                <Book bookData={bookData} bookError={bookError} bookHandleSelected={bookHandleSelected} />
-                                <Movie movieData={movieData} movieError={movieError} movieHandleSelected={movieHandleSelected} />
+                                <Book bookData={bookData} bookError={bookError} bookHandleSelected={bookHandleSelected} selectedBook={selectedBook} />
+                                <Movie movieData={movieData} movieError={movieError} movieHandleSelected={movieHandleSelected} selectedMovie={selectedMovie} />
                             </div>
-                            <h3>Don't see your book or movie? Try searching something more specific!</h3>
+                            <h3 className="mediaHelp">Don't see your book or movie? Try searching something more specific!</h3>
                         </div>
                         }
                         {
