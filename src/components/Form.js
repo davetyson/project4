@@ -58,7 +58,7 @@ const Form = () => {
             axios({
                 url: "https://api.themoviedb.org/3/search/movie",
                 params: {
-                    api_key: "560b75d6acb9d6fa5dcc55f8ce9a3d6e",
+                    api_key: process.env.REACT_APP_MOVIE_API_KEY,
                     query: userInput
                 }
             })
@@ -153,7 +153,7 @@ const Form = () => {
             axios({
                 url: "https://www.googleapis.com/books/v1/volumes",
                 params: {
-                    key: "AIzaSyDbHjcKXrCFRLz3IGGizFEKJWDwqtHjgc0",
+                    key: process.env.REACT_APP_BOOKS_API_KEY,
                     q: userInput
                 }
             })
@@ -287,21 +287,27 @@ const Form = () => {
     }
 
     return (
-        <div>
+        <div className="formComponent">
             <form id="userInputForm" onSubmit={handleSubmit}>
                 <label htmlFor="userInput">Search for a title:</label>
                 <input type="text" id="userInput" onChange={handleChange} value={userInput}/>
-                <button>search</button>
+                <button>Search</button>
             </form>
 
             {
                 componentRender === false
-                ? <h2>Welcome</h2>
+                ? <h2>Welcome! Please search for your favourite movie / book title to begin!</h2>
                 : movieError === true && bookError === true 
-                    ? <h3>No Results</h3>
+                    ? <h3>No Results(Error component)</h3>
                     : <div>
-                        <Book bookData={bookData} bookError={bookError} bookHandleSelected={bookHandleSelected} />
-                        <Movie movieData={movieData} movieError={movieError} movieHandleSelected={movieHandleSelected} />
+                        <div className="formSuccessBox">
+                            <h3>Choose one movie and one book to compare!</h3>
+                            <div className="mediaListFlex">
+                            <Book bookData={bookData} bookError={bookError} bookHandleSelected={bookHandleSelected} />
+                            <Movie movieData={movieData} movieError={movieError} movieHandleSelected={movieHandleSelected} />
+                            </div>
+                            <h3>Don't see your book or movie? Try searching something more specific!</h3>
+                        </div>
                         {
                             result === ""
                             ? null
@@ -309,6 +315,8 @@ const Form = () => {
                         }                        
                       </div>
         }   
+
+            
         </div>
     )
 }
