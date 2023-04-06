@@ -227,12 +227,12 @@ const Form = () => {
                     ? <h3>No Results</h3>
                     :
                     <div className="formSuccessBox">
-                        <h3>Choose one movie and one book to compare!</h3>
+                        <h3 className="formH3">Choose one movie and one book to compare!</h3>
                         <div className="mediaListFlex">
                             <Book bookData={bookData} bookError={bookError} />
                             <Movie movieData={movieData} movieError={movieError}/>
                         </div>
-                        <h3>Don't see your book or movie? Try searching something more specific!</h3>
+                        <h3 className="formH3">Don't see your book or movie? Try searching something more specific!</h3>
                     </div>
                     
             }

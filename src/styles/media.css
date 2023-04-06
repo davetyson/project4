@@ -20,7 +20,8 @@
     transition: 0.2s;
 }
 
-.mediaLi button:hover {
+.mediaLi button:hover,
+.mediaLi button:focus {
     background-color: #000;
     color: #FFF;
 }
@@ -52,7 +53,6 @@
 
 .listImg img {
     height: 150px;
-    margin: 0 auto;
 }
 
 .listTitleSort {

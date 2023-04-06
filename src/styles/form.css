@@ -1,5 +1,16 @@
 /* Form styles */
 
+.mediaTitle {
+    border: 1px solid #000;
+    border-radius: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    margin: 0;
+    padding: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
 .formComponent h2 {
     margin: 10vh auto;
     width: 80%;
@@ -31,7 +42,7 @@ form button:hover {
     color: #FFF;
 }
 
-.formSuccessBox h3 {
+.formH3 {
     font-family: 'Roboto', sans-serif;
     font-size: 2rem;
     border: 1px solid #000;
