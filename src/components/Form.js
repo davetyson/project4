@@ -2,7 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import Book from "./Book";
 import Movie from "./Movie";
-// import "../styles/form.css";
+import "../styles/form.css";
+import "../styles/global.css";
 
 const Form = () => {
     const [movieData, setMovieData] = useState([]);
@@ -211,22 +212,26 @@ const Form = () => {
     // }
 
     return (
-        <div>
+        <div className="formComponent">
             <form id="userInputForm" onSubmit={handleSubmit}>
                 <label htmlFor="userInput">Search for a title:</label>
                 <input type="text" id="userInput" onChange={handleChange} value={userInput}/>
-                <button>search</button>
+                <button>Search</button>
             </form>
 
             {
                 componentRender === false
-                ? <h2>Welcome</h2>
+                ? <h2>Welcome! Please search for your favourite movie / book title to begin!</h2>
                 : movieError === true && bookError === true 
                     ? <h3>No Results</h3>
-                    : 
-                    <div>
-                        <Book bookData={bookData} bookError={bookError} />
-                        <Movie movieData={movieData} movieError={movieError}/>
+                    :
+                    <div className="formSuccessBox">
+                        <h3>Choose one movie and one book to compare!</h3>
+                        <div className="mediaListFlex">
+                            <Book bookData={bookData} bookError={bookError} />
+                            <Movie movieData={movieData} movieError={movieError}/>
+                        </div>
+                        <h3>Don't see your book or movie? Try searching something more specific!</h3>
                     </div>
                     
             }
