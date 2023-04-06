@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import Book from "./Book";
-import Movie from "./Movie";
 import "../styles/form.css";
-import "../styles/global.css";
-
+import Book from "./Book.js";
+import Movie from "./Movie.js";
+import Comparison from "./Comparison.js";
 
 const Form = () => {
     const [movieData, setMovieData] = useState([]);
@@ -13,7 +12,34 @@ const Form = () => {
     const [bookError, setBookError] = useState(false);
     const [userInput, setUserInput] = useState("");
     const [componentRender, setComponentRender] = useState(false);
-    const [generalError, setgeneralError] = useState(false);
+    // const [generalError, setgeneralError] = useState(false);
+    const [selectedMovie, setSelectedMovie] =useState("");
+    const [selectedBook, setSelectedBook] =useState("");
+    const [result, setResult] =useState("");
+
+
+    useEffect(() => {
+        // console.log(selectedMovie);
+        // console.log(selectedBook);
+
+        if(selectedMovie !== "" && selectedBook !== "") {
+            console.log("Results");
+
+            if(selectedMovie.rating > selectedBook.rating) {
+                console.log("Movie rules!");
+                setResult("movie");
+            }
+            else if(selectedMovie.rating < selectedBook.rating) {
+                console.log("The book is better!");
+                setResult("book");
+            }
+            else {
+                console.log("It's a Tie go for both!");
+                setResult("tie");
+            }
+        }
+
+    },[selectedMovie, selectedBook]);
 
 
     const handleChange = (e) => {
@@ -23,12 +49,17 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log("handleSubmit");
-
-        setComponentRender(true);
+        // console.log("handleSubmit"); 
+        // setResult("");
+        // setBookData("");
+        // setBookError("");
+        // setMovieData("");
+        // setMovieError("");
 
         if(userInput.trim()) {
-            // Movie API request
+            // Movie API request 
+            setComponentRender(true);
+
             axios({
                 url: "https://api.themoviedb.org/3/search/movie",
                 params: {
@@ -40,10 +71,8 @@ const Form = () => {
                 // console.log(apiDataMovie.data.results[0]);
 
                 if(apiDataMovie.data.results) {
-                    // console.log("exists");
-                    setComponentRender(true);
+                    // console.log("exists");     
                     
-                    // TODO - take a look into API docs and figure out what to do when I receive multiple movies back
                     const movieDataObj = apiDataMovie.data.results;
                     // console.log(movieDataObj.vote_average);
 
@@ -74,12 +103,20 @@ const Form = () => {
                         else {
                             newMovieVotes = 0;
                         }
+
+                        let movieImg = "";
+                        if(movieDataObj[index].poster_path) {
+                            movieImg = "https://image.tmdb.org/t/p/w500"+movieDataObj[index].poster_path;
+                        }
+                        else {
+                            movieImg = null;
+                        }
                                           
                         const newMovieObj = {
                             id: movieDataObj[index].id,
                             title: movieDataObj[index].title,
                             description: movieDataObj[index].overview,
-                            image: "https://image.tmdb.org/t/p/w500"+movieDataObj[index].poster_path,
+                            image: movieImg,
                             rating: newMovieRating,
                             published: movieDataObj[index].release_date,
                             voteCount: newMovieVotes
@@ -92,15 +129,23 @@ const Form = () => {
 
                     const sortedArray = movieArrayData.sort((a, b) => b.voteCount - a.voteCount);
                     const newSortedArray = [];
-                    for(let i = 0; i < 10; i++) {
-                        newSortedArray.push(sortedArray[i]);
+                    
+                    if(sortedArray.length >= 10) {
+                        for(let i = 0; i < 10; i++) {
+                            newSortedArray.push(sortedArray[i]);
+                        }
                     }
+                    else {
+                        for(let i = 0; i < sortedArray.length; i++) {
+                            newSortedArray.push(sortedArray[i]);
+                        }
+                    }
+                    
 
-                    setMovieData(movieArrayData);
+                    setMovieData(newSortedArray);
                     // console.log(movieArrayData);
                     setUserInput("");
                     setMovieError(false);
-
                     console.log(newSortedArray);
                 }
                 else {
@@ -124,9 +169,8 @@ const Form = () => {
                     // console.log("exists");
                     setComponentRender(true);
 
-                    // console.log(apiDataBook.data.items);
+                    // console.log(apiDataBook.data.items);                    
                     
-                    // TODO - take a look into API docs and figure out what to do when I receive multiple books back
                     const bookDataObj = apiDataBook.data.items;
                     // console.log(bookDataObj);
 
@@ -180,7 +224,6 @@ const Form = () => {
                     }
 
                     console.log(bookArrayData.sort((a, b) => b.voteCount - a.voteCount));
-
                     setBookData(bookArrayData.sort((a, b) => b.voteCount - a.voteCount));
                     // console.log(bookArrayData);
                     setUserInput("");
@@ -190,12 +233,17 @@ const Form = () => {
                 else {
                     console.log("don't exist");
                     setBookError(true);
+                    // setComponentRender(false);
+                    // setBookData("");
+                    // setMovieData("");
                 }
             });
 
         }
         else {
             alert("Please, inform the title!");
+            // setBookData("");
+            // setMovieData("");
         }
 
     }
@@ -204,13 +252,48 @@ const Form = () => {
     // console.log(bookError);
     // console.log(componentRender);
 
-    // const movieHandleSelected = () => {
-        
-    // }
+    const movieHandleSelected = (e) => {
+        // console.log(parseInt(e.target.parentElement.id));
+        // const movieId = parseInt(e.target.parentElement.id);
+        // console.log(movieData);
 
-    // const bookHandleSelected = () => {
-        
-    // }
+        movieData.forEach((item) => {            
+            // console.log(item.id);
+            if(item.id === parseInt(e.target.parentElement.id)) {                
+                const newMovieSelected = {
+                    id: item.id,
+                    title: item.title,
+                    description: item.description,
+                    image: item.image,
+                    rating: item.rating,
+                    published: item.published,
+                    voteCount: item.voteCount
+                }
+
+                setSelectedMovie(newMovieSelected);
+            }
+        });
+    }
+
+    const bookHandleSelected = (e) => {
+        // console.log(e.target.parentElement.id);
+
+        bookData.forEach((item) => {
+            if(item.id === e.target.parentElement.id) {
+                const newBookSelected = {
+                    id: item.id,
+                    title: item.title,
+                    description: item.description,
+                    image: item.image,
+                    rating: item.rating,
+                    published: item.published,
+                    voteCount: item.voteCount
+                }
+
+                setSelectedBook(newBookSelected);
+            }
+        });        
+    }
 
     return (
         <div className="formComponent">
@@ -224,21 +307,27 @@ const Form = () => {
                 componentRender === false
                 ? <h2>Welcome! Please search for your favourite movie / book title to begin!</h2>
                 : movieError === true && bookError === true 
-                    ? <h3>No Results</h3>
-                    :
-                    <div className="formSuccessBox">
-                        <h3>Choose one movie and one book to compare!</h3>
-                        <div className="mediaListFlex">
-                            <Book bookData={bookData} bookError={bookError} />
-                            <Movie movieData={movieData} movieError={movieError}/>
+                    ? <h3>No Results(Error component)</h3>
+                    : <div>
+                        {bookData === "" && movieData === ""
+                        ? null
+                        : <div className="formSuccessBox">
+                            <h3>Choose one movie and one book to compare!</h3>
+                            <div className="mediaListFlex">
+                                <Book bookData={bookData} bookError={bookError} bookHandleSelected={bookHandleSelected} />
+                                <Movie movieData={movieData} movieError={movieError} movieHandleSelected={movieHandleSelected} />
+                            </div>
+                            <h3>Don't see your book or movie? Try searching something more specific!</h3>
                         </div>
-                        <h3>Don't see your book or movie? Try searching something more specific!</h3>
+                        }
+                        {
+                            result === ""
+                            ? null
+                            : <Comparison result={result} />
+                        }                        
                     </div>
-                    
-            }
-            
+        }               
         </div>
-        
     )
 }
 
