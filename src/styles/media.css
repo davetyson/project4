@@ -43,10 +43,6 @@
     margin: 0 auto;
 }
 
-.mediaBox figure {
-    width: 25%;
-}
-
 .listImg {
     width: fit-content;
     height: 152px;
