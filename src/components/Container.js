@@ -1,7 +1,6 @@
 import'../styles/global.css';
 import Header from './Header.js';
 import Form from './Form.js'
-import Footer from './Footer.js';
 
 function Container() {
     return (
@@ -11,7 +10,7 @@ function Container() {
             {/* test */}
         </nav>
         <main className="contentArea wrapper">
-            
+            <Form />
         </main>
         
       </div>

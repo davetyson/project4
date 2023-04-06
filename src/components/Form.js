@@ -50,6 +50,11 @@ const Form = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log("handleSubmit"); 
+        // setResult("");
+        // setBookData("");
+        // setBookError("");
+        // setMovieData("");
+        // setMovieError("");
 
         if(userInput.trim()) {
             // Movie API request 
@@ -228,13 +233,17 @@ const Form = () => {
                 else {
                     console.log("don't exist");
                     setBookError(true);
-                    setComponentRender(false);
+                    // setComponentRender(false);
+                    // setBookData("");
+                    // setMovieData("");
                 }
             });
 
         }
         else {
             alert("Please, inform the title!");
+            // setBookData("");
+            // setMovieData("");
         }
 
     }
@@ -300,23 +309,24 @@ const Form = () => {
                 : movieError === true && bookError === true 
                     ? <h3>No Results(Error component)</h3>
                     : <div>
-                        <div className="formSuccessBox">
+                        {bookData === "" && movieData === ""
+                        ? null
+                        : <div className="formSuccessBox">
                             <h3>Choose one movie and one book to compare!</h3>
                             <div className="mediaListFlex">
-                            <Book bookData={bookData} bookError={bookError} bookHandleSelected={bookHandleSelected} />
-                            <Movie movieData={movieData} movieError={movieError} movieHandleSelected={movieHandleSelected} />
+                                <Book bookData={bookData} bookError={bookError} bookHandleSelected={bookHandleSelected} />
+                                <Movie movieData={movieData} movieError={movieError} movieHandleSelected={movieHandleSelected} />
                             </div>
                             <h3>Don't see your book or movie? Try searching something more specific!</h3>
                         </div>
+                        }
                         {
                             result === ""
                             ? null
                             : <Comparison result={result} />
                         }                        
-                      </div>
-        }   
-
-            
+                    </div>
+        }               
         </div>
     )
 }

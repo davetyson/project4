@@ -14,13 +14,13 @@ const Book = (props) => {
                 return(
                     <li key={book.id} className="mediaLi" id={book.id}>
                         <button onClick={(e) => props.bookHandleSelected(e)}>
-                            <div className="mediaBox">  
-                                <figure className="listImg">
+                            <div id={book.id} className="mediaBox">  
+                                <figure id={book.id} className="listImg">
                                     {book.image === null
                                     ? <img src={placeholder} alt="no book cover found"/>
                                     : <img src={book.image} alt={book.title}/>}
                                 </figure>
-                                <div className="listTitleSort">
+                                <div id={book.id} className="listTitleSort">
                                     <h4>{book.title}</h4>
                                     <h5>{book.author}</h5>
                                     <h5 className="mediaListYear">{book.published}</h5>

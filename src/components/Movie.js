@@ -10,32 +10,33 @@ const Movie = (props) => {
 
     return (
        <>
-        <ul> 
-            <li className="mediaLi">
-                <h3 className="mediaTitle moviesTitle">Movies</h3>
-            </li>
-                {props.movieData.slice(0, 3).map((movie) => {
-                return(
-                    <li key={movie.id} className="mediaLi" id={movie.id}>
-                        <button onClick={(e) => props.movieHandleSelected(e)}>
-                            <div className="mediaBox">
-                                <figure className="listImg">
-                                    {movie.image === null
-                                    ? <img src={placeholder} alt="no poster found"/>
-                                    : <img src={movie.image} alt={movie.title}/>}
-                                </figure>
-                                <div className="listTitleSort">
-                                    <h4>{movie.title}</h4>
-                                    <h5 className="mediaListYear">{movie.published}</h5>
+            <ul> 
+                <li className="mediaLi">
+                    <h3 className="mediaTitle moviesTitle">Movies</h3>
+                </li>
+                    {props.movieData.slice(0, 3).map((movie) => {
+                    return(
+                        <li id={movie.id} key={movie.id} className="mediaLi">
+                            <button onClick={(e) => props.movieHandleSelected(e)}>
+                                <div id={movie.id} className="mediaBox">
+                                    <figure id={movie.id} className="listImg">
+                                        {movie.image === null
+                                        ? <img src={placeholder} alt="no poster found"/>
+                                        : <img src={movie.image} alt={movie.title}/>}
+                                    </figure>
+                                    <div id={movie.id} className="listTitleSort">
+                                        <h4>{movie.title}</h4>
+                                        <h5 className="mediaListYear">{movie.published}</h5>
+                                    </div>
+                                    <h5 className="mediaListDescription">{movie.description}</h5>
                                 </div>
-                                <h5 className="mediaListDescription">{movie.description}</h5>
-                            </div>
-                        </button>
-                    </li> 
-                    )
-                })
-                }            
-        </ul>        
+                            </button>
+                        </li> 
+                        )
+                    })
+                    }            
+            </ul> 
+                     
         </>
 
         // li {movieArrayData[0]}
