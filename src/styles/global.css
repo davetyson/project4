@@ -20,8 +20,12 @@ body {
     background-repeat: no-repeat;
     height: 100vh; */
     font-family: 'Maitree', serif;
-    color: #000000;
+    color: #000;
+    text-align: center;
+}
 
+main {
+    min-height: 45vh;
 }
 
 h1 {
@@ -54,6 +58,26 @@ a:hover {
     text-decoration: underline;
 }
 
+button {
+    background: transparent;
+    border: none;
+}
+
+ul {
+    width: 50%;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #000;
+    border-radius: 15px;
+}
+
 .boldText {
     font-weight: 700;
 }
@@ -63,12 +87,12 @@ a:hover {
 }
 
 .app {
-    background: url("../assets/bricks.jpg") no-repeat center center fixed; 
+    background: url("../assets/bricks.jpg") repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 100vh;
+  height: 100%;
 }
 
 .wrapper {
@@ -113,3 +137,10 @@ a:hover {
     position: relative;
 }
 
+/* Media queries */
+
+@media only screen and (max-width: 768px) {
+    ul {
+        width: 100%;
+    }
+  }

@@ -6,33 +6,36 @@ import placeholder from '../assets/placeHolder.png'
 
 const Book = (props) => {
 
-    // this userMovie useState would need to be something that lives in Form, and then is passed down to this Movie child. That way, inside Form, we have access to both the userMovie and the userBook (when we create that in the Book component). Form can then see when userMovie and userBook are true, and when both are true, it can send the information down to the "results" component to run the animation
+    // const [ userBook, setUserBook ] = useState(false);
 
-    // inside both Movie and Book, each clickable li will activate a passed down function (running in an anonymous function) that sets the userMovie or userBook to true
+    const handleUserChoice = () => {
+        console.log("this onClick can set the data from the user's media choice to compare for the final results!");
+    };
 
-    // userMovie & userBook set to false when there is a new search run
-
-    const [ userBook, setUserBook ] = useState(false);
-    console.log(props);
     return (
        <>
-        <h3>Books</h3>
-        
-        
             <ul> 
-                {props.bookData.map((book) => {
+                <li className="mediaLi">
+                    <h3 className="mediaTitle">Books</h3>
+                </li>
+                {props.bookData.slice(0, 3).map((book) => {
                 return(
-                    <li key={book.id}>       
-                        <h4>{book.title}</h4>
-                        <h5>{book.author}</h5>
-                        <h5>{book.description}</h5>
-                        <h5>
-                            {book.image === null? <img src={placeholder} alt="no image found"/>:
-                        <img src={book.image} alt={book.title}/>}</h5>
-                        
-                        <h5>{book.rating}</h5>
-                        <h5>{book.published}</h5>
-                        <h5>{book.voteCount}</h5>
+                    <li key={book.id} className="mediaLi">
+                        <button onClick={handleUserChoice}>
+                            <div className="mediaBox">  
+                                <figure className="listImg">
+                                    {book.image === null
+                                    ? <img src={placeholder} alt="no image found"/>
+                                    : <img src={book.image} alt={book.title}/>}
+                                </figure>
+                                <div className="listTitleSort">
+                                    <h4>{book.title}</h4>
+                                    <h5>{book.author}</h5>
+                                    <h5 className="mediaListYear">{book.published}</h5>
+                                </div>
+                                <h5 className="mediaListDescription">{book.description}</h5>
+                            </div>
+                        </button>          
                     </li> 
                     )
             
