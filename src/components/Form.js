@@ -12,16 +12,14 @@ const Form = () => {
     const [bookError, setBookError] = useState(false);
     const [userInput, setUserInput] = useState("");
     const [componentRender, setComponentRender] = useState(false);
-    // const [generalError, setgeneralError] = useState(false);
+    // const [generalError, setGeneralError] = useState(false);
     const [selectedMovie, setSelectedMovie] =useState("");
     const [selectedBook, setSelectedBook] =useState("");
     const [result, setResult] =useState("");
 
-
+    // Build an useEffect to make the comparison after the user pick a movie and a book.
     useEffect(() => {
-        // console.log(selectedMovie);
-        // console.log(selectedBook);
-
+        //Verifying if both movie and book were selected by the user
         if(selectedMovie !== "" && selectedBook !== "") {
             console.log("Results");
 
@@ -38,28 +36,27 @@ const Form = () => {
                 setResult("tie");
             }
         }
-
     },[selectedMovie, selectedBook]);
 
-
+    //Tracking the changes on userInput
     const handleChange = (e) => {
-        // console.log(e.target.value);
         setUserInput(e.target.value);
     }
 
+    //Get the form submission to start the APIs call
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log("handleSubmit"); 
-        // setResult("");
-        // setBookData("");
-        // setBookError("");
-        // setMovieData("");
-        // setMovieError("");
 
+        //check for empty form submission
         if(userInput.trim()) {
-            // Movie API request 
-            setComponentRender(true);
+            //setup the useStates to perform the axios call and render the right component into the screen
+            setMovieError(false);
+            setBookError(false);
+            setResult("");
+            setSelectedMovie("");
+            setSelectedBook("");
 
+            // Movie API request
             axios({
                 url: "https://api.themoviedb.org/3/search/movie",
                 params: {
@@ -68,42 +65,34 @@ const Form = () => {
                 }
             })
             .then(apiDataMovie => {
-                // console.log(apiDataMovie.data.results[0]);
-
-                if(apiDataMovie.data.results) {
-                    // console.log("exists");     
-                    
+                //Check the API response array length before hold the data in a variable 
+                if(apiDataMovie.data.results.length !== 0) {
                     const movieDataObj = apiDataMovie.data.results;
-                    // console.log(movieDataObj.vote_average);
-
+                    
+                    // Create an empty array to hold the filtered values
                     const movieArrayData = [];
 
                     for(let index in movieDataObj) {
-                        // console.log(movieDataObj);
-                        // console.log(index);
-                        // console.log(movieDataObj[index]);
-
                         //handle the movie rating in case the title has no rating
                         let newMovieRating = "";
+
                         if(movieDataObj[index].vote_average) {
-                            newMovieRating = (movieDataObj[index].vote_average / 10) * 100;
-                        
+                            newMovieRating = (movieDataObj[index].vote_average / 10) * 100;                        
                         }
                         else {
                             newMovieRating = 0;
                         }
-                        // console.log(newMovieRating);
 
                         //handle the movie vote count in case the title has no votes
                         let newMovieVotes = "";
                         if(movieDataObj[index].vote_count) {
-                            newMovieVotes = movieDataObj[index].vote_count;
-                        
+                            newMovieVotes = movieDataObj[index].vote_count;                        
                         }
                         else {
                             newMovieVotes = 0;
                         }
 
+                        //handle the movie image url in case the title has no image path
                         let movieImg = "";
                         if(movieDataObj[index].poster_path) {
                             movieImg = "https://image.tmdb.org/t/p/w500"+movieDataObj[index].poster_path;
@@ -111,7 +100,8 @@ const Form = () => {
                         else {
                             movieImg = null;
                         }
-                                          
+                        
+                        //Create a new object to fill the array
                         const newMovieObj = {
                             id: movieDataObj[index].id,
                             title: movieDataObj[index].title,
@@ -125,31 +115,29 @@ const Form = () => {
                         movieArrayData.push(newMovieObj);
                     }
 
-                    // console.log(movieArrayData.sort((a, b) => b.voteCount - a.voteCount));
-
+                    //sorting the array in descending vote count order
                     const sortedArray = movieArrayData.sort((a, b) => b.voteCount - a.voteCount);
-                    const newSortedArray = [];
-                    
+
+                    const newSortedMovie = [];                    
+                    //wrapper the movie results in maximum 10 titles sorted.
                     if(sortedArray.length >= 10) {
                         for(let i = 0; i < 10; i++) {
-                            newSortedArray.push(sortedArray[i]);
+                            newSortedMovie.push(sortedArray[i]);
                         }
                     }
                     else {
                         for(let i = 0; i < sortedArray.length; i++) {
-                            newSortedArray.push(sortedArray[i]);
+                            newSortedMovie.push(sortedArray[i]);
                         }
                     }
-                    
 
-                    setMovieData(newSortedArray);
-                    // console.log(movieArrayData);
-                    setUserInput("");
+                    //Fill the use state to pass down by props
+                    setMovieData(newSortedMovie);
+                    //set error handling to false
                     setMovieError(false);
-                    console.log(newSortedArray);
                 }
                 else {
-                    console.log("don't exist");
+                    // If no movie is found, set error handling to true
                     setMovieError(true);
                 }
             });
@@ -163,23 +151,14 @@ const Form = () => {
                 }
             })
             .then(apiDataBook => {
-                // console.log(apiDataBook.data.totalItems);
-
-                if(apiDataBook.data.totalItems !== 0) {
-                    // console.log("exists");
-                    setComponentRender(true);
-
-                    // console.log(apiDataBook.data.items);                    
-                    
+                //Check the API response array length before hold the data in a variable 
+                if(apiDataBook.data.totalItems !== 0) {                   
                     const bookDataObj = apiDataBook.data.items;
-                    // console.log(bookDataObj);
 
+                    // Create an empty array to hold the filtered values
                     const bookArrayData = [];
 
                     for(let index in bookDataObj) {
-
-                        // console.log(bookDataObj[index]);
-
                         // handle the book rating in case the book has no rate
                         let newBookRating = "";
                         if(bookDataObj[index].volumeInfo.averageRating) {
@@ -209,6 +188,7 @@ const Form = () => {
                             bookImg = null;
                         }
 
+                        //Create a new object to fill the array
                         const newBookObj = {
                             id: bookDataObj[index].id,
                             title: bookDataObj[index].volumeInfo.title,
@@ -223,40 +203,47 @@ const Form = () => {
                         bookArrayData.push(newBookObj);
                     }
 
-                    console.log(bookArrayData.sort((a, b) => b.voteCount - a.voteCount));
-                    setBookData(bookArrayData.sort((a, b) => b.voteCount - a.voteCount));
-                    // console.log(bookArrayData);
-                    setUserInput("");
+                    //sorting the book array in descending vote count order
+                    const sortedArray = bookArrayData.sort((a, b) => b.voteCount - a.voteCount);
+
+                    const newSortedBook = [];                    
+                    //wrapper the book results in maximum 10 titles sorted.
+                    if(sortedArray.length >= 10) {
+                        for(let i = 0; i < 10; i++) {
+                            newSortedBook.push(sortedArray[i]);
+                        }
+                    }
+                    else {
+                        for(let i = 0; i < sortedArray.length; i++) {
+                            newSortedBook.push(sortedArray[i]);
+                        }
+                    }
+
+                    //Fill the use state to pass down by props
+                    setBookData(newSortedBook);
+                    //set error handling to false
                     setBookError(false);
 
                 }
                 else {
-                    console.log("don't exist");
+                    // If no book is found, set error handling to true
                     setBookError(true);
-                    // setComponentRender(false);
-                    // setBookData("");
-                    // setMovieData("");
                 }
             });
+
+            //Clear the user input 
+            setUserInput("");
+            //Set component render to show the the book and the movie component
+            setComponentRender(true);
 
         }
         else {
             alert("Please, inform the title!");
-            // setBookData("");
-            // setMovieData("");
         }
-
     }
 
-    // console.log(movieError);
-    // console.log(bookError);
-    // console.log(componentRender);
-
+    //Get the user movie chosen
     const movieHandleSelected = (e) => {
-        // console.log(parseInt(e.target.parentElement.id));
-        // const movieId = parseInt(e.target.parentElement.id);
-        // console.log(movieData);
-
         movieData.forEach((item) => {            
             // console.log(item.id);
             if(item.id === parseInt(e.target.parentElement.id)) {                
@@ -270,14 +257,14 @@ const Form = () => {
                     voteCount: item.voteCount
                 }
 
+                //Fill the use state with user selection
                 setSelectedMovie(newMovieSelected);
             }
         });
     }
 
+    //Get the user book chosen
     const bookHandleSelected = (e) => {
-        // console.log(e.target.parentElement.id);
-
         bookData.forEach((item) => {
             if(item.id === e.target.parentElement.id) {
                 const newBookSelected = {
@@ -290,6 +277,7 @@ const Form = () => {
                     voteCount: item.voteCount
                 }
 
+                //Fill the use state with user selection
                 setSelectedBook(newBookSelected);
             }
         });        
@@ -326,7 +314,7 @@ const Form = () => {
                             : <Comparison result={result} />
                         }                        
                     </div>
-        }               
+            }               
         </div>
     )
 }
