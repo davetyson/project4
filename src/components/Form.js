@@ -5,6 +5,7 @@ import Movie from "./Movie";
 import "../styles/form.css";
 import "../styles/global.css";
 
+
 const Form = () => {
     const [movieData, setMovieData] = useState([]);
     const [bookData, setBookData] = useState([]);
@@ -31,7 +32,7 @@ const Form = () => {
             axios({
                 url: "https://api.themoviedb.org/3/search/movie",
                 params: {
-                    api_key: "560b75d6acb9d6fa5dcc55f8ce9a3d6e",
+                    api_key: process.env.REACT_APP_MOVIE_API_KEY,
                     query: userInput
                 }
             })
@@ -112,7 +113,7 @@ const Form = () => {
             axios({
                 url: "https://www.googleapis.com/books/v1/volumes",
                 params: {
-                    key: "AIzaSyDbHjcKXrCFRLz3IGGizFEKJWDwqtHjgc0",
+                    key: process.env.REACT_APP_BOOKS_API_KEY,
                     q: userInput
                 }
             })
