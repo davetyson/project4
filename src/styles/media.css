@@ -1,12 +1,25 @@
 /* Media (Movie.js / Book.js) styles */
 
-.mediaTitle {
+/* Initial Media List styles */
+.mediaTitle,
+.mediaHelp {
+    border: 1px solid #000;
+    border-radius: 15px;
     font-family: 'Roboto', sans-serif;
     font-size: 2rem;
-    margin: 0;
     padding: 10px;
     display: inline-block;
-    width: 100%;
+    width: calc(100% - 20px);
+}
+
+.mediaTitle {
+    width: calc(100% - 20px);
+    margin: 5px 10px;
+}
+
+.mediaHelp {
+    width: calc(100% - 40px);
+    margin: 10px 10px;
 }
 
 .mediaLi {
@@ -18,9 +31,11 @@
     border-radius: 15px;
     padding: 5px;
     transition: 0.2s;
+    width: 100%;
 }
 
-.mediaLi button:hover {
+.mediaLi button:hover,
+.mediaLi button:focus {
     background-color: #000;
     color: #FFF;
 }
@@ -52,7 +67,6 @@
 
 .listImg img {
     height: 150px;
-    margin: 0 auto;
 }
 
 .listTitleSort {
@@ -88,3 +102,55 @@
         margin-top: 20px;
     }
   }
+
+  /* Full Media Display Page styles */
+
+.userMediaBox {
+    width: 50%;
+    border: 1px solid #000;
+    border-radius: 15px;
+    margin: 5px 10px;
+    padding: 10px;
+    align-content: center;
+}
+
+.userMediaBox img {
+    margin: 0 auto;
+    height: 300px;
+}
+
+.userMediaTitle,
+.mediaRating {
+    font-family: 'Roboto', sans-serif;
+    display: inline-block;
+    width: calc(100% - 20px);
+    margin: 5px auto;
+}
+
+.userMediaTitle {
+    font-size: 3rem;
+}
+
+.mediaRating {
+    font-size: 4rem;
+}
+
+.userMediaDescription {
+    font-weight: 400;
+    margin: 10px;
+    text-align: left;
+}
+
+.userMediaYear {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    display: inline-block;
+    width: calc(100% - 20px);
+    margin: 5px auto;
+}
+
+/* .userMediaBox figure,
+.userMediaBox h3,
+.userMediBox p {
+    margin: 0 auto;
+} */
