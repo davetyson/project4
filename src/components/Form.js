@@ -21,18 +21,13 @@ const Form = () => {
     useEffect(() => {
         //Verifying if both movie and book were selected by the user
         if(selectedMovie !== "" && selectedBook !== "") {
-            console.log("Results");
-
             if(selectedMovie.rating > selectedBook.rating) {
-                console.log("Movie rules!");
                 setResult("movie");
             }
             else if(selectedMovie.rating < selectedBook.rating) {
-                console.log("The book is better!");
-                setResult("book");
+                 setResult("book");
             }
             else {
-                console.log("It's a Tie go for both!");
                 setResult("tie");
             }
         }
@@ -147,7 +142,8 @@ const Form = () => {
                 url: "https://www.googleapis.com/books/v1/volumes",
                 params: {
                     key: process.env.REACT_APP_BOOKS_API_KEY,
-                    q: userInput
+                    q: userInput,
+                    printType: "books"
                 }
             })
             .then(apiDataBook => {
@@ -197,7 +193,8 @@ const Form = () => {
                             image: bookImg,
                             rating: newBookRating,
                             published: bookDataObj[index].volumeInfo.publishedDate,
-                            voteCount: newBookVotes
+                            voteCount: newBookVotes,
+                            pageCount: bookDataObj[index].volumeInfo.pageCount
                         }
 
                         bookArrayData.push(newBookObj);
@@ -274,7 +271,8 @@ const Form = () => {
                     image: item.image,
                     rating: item.rating,
                     published: item.published,
-                    voteCount: item.voteCount
+                    voteCount: item.voteCount,
+                    pageCount: item.pageCount
                 }
 
                 //Fill the use state with user selection
@@ -311,7 +309,10 @@ const Form = () => {
                         {
                             result === ""
                             ? null
-                            : <Comparison result={result} />
+                            : <Comparison 
+                                result={result} 
+                                selectedBook={selectedBook}
+                            />
                         }                        
                     </div>
             }               
