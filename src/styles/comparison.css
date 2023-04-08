@@ -1,0 +1,119 @@
+#resultContainer {
+    /* position: fixed;  */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: center;
+    justify-content: center;
+*/
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    z-index: 10;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+
+    /* border: 1px solid red; */
+    background-color: rgba(0, 0, 0, 0.425);
+}
+
+#resultContainer.hidden {
+    visibility: hidden;
+}
+
+#resultContainer .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* border: 1px solid blue; */
+    background-color: #F4E6E8;
+    max-width: 60%;
+    min-height: 50%;
+    overflow: hidden;
+}
+
+#resultContainer .wrapper span.close {
+    color: red;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.288);
+    /* border: 1px solid rgba(0, 0, 0, 0.171); */
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+}
+
+#resultContainer .wrapper span.close:hover {
+    color: black;
+}
+
+
+#resultContainer .wrapper .progressBarContainer {
+    background-color: rgba(0, 0, 0, 0.24);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    /* border: 1px solid red; */
+}
+
+#resultContainer .wrapper .progressBarContainer .progressBarContent {
+    /* border: 1px solid blue; */
+    width: 400px;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-end;
+    /* align-items: center; */
+    font-size: 1.5rem;
+    position: relative;
+    margin: 10px auto;
+    padding: 0;
+}
+
+#resultContainer .wrapper .progressBarContainer .progressBar {
+    position: relative;
+    overflow: hidden;
+    width: 200px;
+    height: 15px;
+    border-radius: 5px;
+    background-color: aliceblue;
+    border: 1px solid black;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+#resultContainer .wrapper .progressBarContainer .progressBarContent span.percent {
+    height: 20px;
+    width: fit-content;    
+    /* border: 1px solid red; */
+
+    position: absolute;
+    top: 0;
+    right: 90px;
+}
+
+#resultContainer .wrapper .progressBarContainer .progressBarContent .progressBar .barStyle {
+    height: 100%;
+    background-color: #5DA9C1;
+    transition: width 0.5s;
+}
+
+
