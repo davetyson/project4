@@ -91,7 +91,10 @@ const Comparison = ({result, selectedBook}) => {
                         </div>                  
                     </div>  
                     : <>
-                        <ReactConfetti width={windowSize.width} height={windowSize.height} numberOfPieces="500" />
+                        <ReactConfetti 
+                            width={windowSize.width} 
+                            height={windowSize.height} 
+                        />
                         <h1>{result}</h1>
                         <h2>{comparison}</h2>                         
                     </>

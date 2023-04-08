@@ -13,9 +13,11 @@ const Form = () => {
     const [userInput, setUserInput] = useState("");
     const [componentRender, setComponentRender] = useState(false);
     // const [generalError, setGeneralError] = useState(false);
-    const [selectedMovie, setSelectedMovie] =useState("");
-    const [selectedBook, setSelectedBook] =useState("");
-    const [result, setResult] =useState("");
+    const [selectedMovie, setSelectedMovie] = useState("");
+    const [selectedBook, setSelectedBook] = useState("");
+    const [result, setResult] = useState("");
+    const [isMovieLoading, setIsMovieLoading] = useState(false);
+    const [isBookLoading, setIsBookLoading] = useState(false);
 
     // Build an useEffect to make the comparison after the user pick a movie and a book.
     useEffect(() => {
@@ -52,6 +54,8 @@ const Form = () => {
             setSelectedBook("");
 
             // Movie API request
+            // Start load screen to wait for the API data
+            setIsMovieLoading(true);
             axios({
                 url: "https://api.themoviedb.org/3/search/movie",
                 params: {
@@ -135,9 +139,14 @@ const Form = () => {
                     // If no movie is found, set error handling to true
                     setMovieError(true);
                 }
+
+                // Stop load screen
+                setIsMovieLoading(false);
             });
 
             // Book API request
+            // Start load screen to wait for the API data
+            setIsBookLoading(true);
             axios({
                 url: "https://www.googleapis.com/books/v1/volumes",
                 params: {
@@ -226,6 +235,9 @@ const Form = () => {
                     // If no book is found, set error handling to true
                     setBookError(true);
                 }
+
+                // Stop load screen
+                setIsBookLoading(false);
             });
 
             //Clear the user input 
@@ -300,8 +312,20 @@ const Form = () => {
                         : <div className="formSuccessBox">
                             <h3 className="mediaHelp">Choose one movie and one book to compare!</h3>
                             <div className="mediaListFlex">
-                                <Book bookData={bookData} bookError={bookError} bookHandleSelected={bookHandleSelected} selectedBook={selectedBook} />
-                                <Movie movieData={movieData} movieError={movieError} movieHandleSelected={movieHandleSelected} selectedMovie={selectedMovie} />
+                                <Book 
+                                    bookData={bookData} 
+                                    bookError={bookError} 
+                                    bookHandleSelected={bookHandleSelected} 
+                                    selectedBook={selectedBook} 
+                                    isBookLoading={isBookLoading}
+                                />
+                                <Movie 
+                                    movieData={movieData} 
+                                    movieError={movieError} 
+                                    movieHandleSelected={movieHandleSelected} 
+                                    selectedMovie={selectedMovie}
+                                    isMovieLoading={isMovieLoading} 
+                                />
                             </div>
                             <h3 className="mediaHelp">Don't see your book or movie? Try searching something more specific!</h3>
                         </div>
