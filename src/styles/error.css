@@ -1,0 +1,63 @@
+/* Error message styles */
+.showError {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 90px;
+  z-index: 20;
+  height: fit-content;
+  padding: 10px 20px;
+  color: #000;
+  background-color: rgba(212, 0, 1, 0.8);
+  width: 20%;
+  left: 48.5%;
+  transition: 1s;
+}
+
+.showError p {
+  font-weight: 700;
+  font-size: 2rem;
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.showError button {
+  position: relative;
+  z-index: 30;
+  width: 20px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  margin-left: 20px;
+  font-size: 3rem;
+}
+
+.showError button:hover {
+  color: #000;
+  background-color: transparent;
+}
+
+/* Error animation styles */
+.errorAnimation {
+  animation: errorAnimation 0.5s linear 1;
+}
+
+@keyframes errorAnimation {
+  0% {
+    opacity: 0%;
+    transform: scale(0.5); 
+  }
+  33% {
+    opacity: 100%;
+    transform: scale(1.5); 
+  }
+  66% {
+    transform: scale(0.5); 
+  }
+  100% {
+    transform: scale(1); 
+  }
+}
