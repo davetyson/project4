@@ -1,43 +1,49 @@
+import ReactLoading from "react-loading";
 import '../styles/media.css';
 import '../styles/global.css';
 import placeholder from '../assets/placeHolder.png'
-import UserMedia from './UserMedia';
+import UserMedia from './UserMedia.js';
 
 const Book = (props) => {
 
-    console.log(props.selectedBook);
+    // console.log(props.selectedBook);
 
     return (
        <>
-            { props.selectedBook
-                ? <UserMedia selectedMovie={props.selectedBook} />
-                : <ul> 
-                    <li className="mediaLi">
-                        <h3 className="mediaTitle">Books</h3>
-                    </li>
-                    {props.bookData.slice(0, 3).map((book) => {
-                    return(
-                        <li key={book.id} className="mediaLi" id={book.id}>
-                            <button onClick={(e) => props.bookHandleSelected(e)} aria-label={`Select ${book.title} by ${book.author}`}>
-                                <div id={book.id} className="mediaBox" role="listitem">  
-                                    <figure id={book.id} className="listImg">
-                                        {book.image === null
-                                        ? <img src={placeholder} alt="Book cover not available"/>
-                                        : <img src={book.image} alt={`Book cover of ${book.title} by ${book.author}`}/>}
-                                    </figure>
-                                    <div id={book.id} className="listTitleSort">
-                                        <h4>{book.title}</h4>
-                                        <h5>{book.author}</h5>
-                                        <h5 className="mediaListYear">{book.published}</h5>
+            {
+                props.isBookLoading === true 
+                ? <ReactLoading type={"bars"} color={"#5DA9C1"} height={100} width={"100%"}/>
+                :  props.selectedBook
+                    ? <UserMedia selectedMovie={props.selectedBook} />
+                    : <ul> 
+                        <li className="mediaLi">
+                            <h3 className="mediaTitle">Books</h3>
+                        </li>
+                        {props.bookData.slice(0, 3).map((book) => {
+                        return(
+                            <li key={book.id} className="mediaLi" id={book.id}>
+                                <button onClick={(e) => props.bookHandleSelected(e)} aria-label={`Select ${book.title} by ${book.author}`}>
+                                    <div id={book.id} className="mediaBox">  
+                                        <figure id={book.id} className="listImg">
+                                            {book.image === null
+                                            ? <img src={placeholder} alt="no book cover found"/>
+                                            : <img src={book.image} alt={`Book cover of ${book.title} by ${book.author}`}/>}
+                                        </figure>
+                                        <div id={book.id} className="listTitleSort">
+                                            <h4>{book.title}</h4>
+                                            <h5>{book.author}</h5>
+                                            <h5 className="mediaListYear">{book.published}</h5>
+                                        </div>
+                                        <h5 className="mediaListDescription">{book.description}</h5>
                                     </div>
-                                    <h5 className="mediaListDescription">{book.description}</h5>
-                                </div>
-                            </button>          
-                        </li> 
-                        )
-                    })}
-                </ul>
+                                </button>          
+                            </li> 
+                            )
+                        })}
+                    </ul>
+                
             }
+            
         </>
         );
     }
