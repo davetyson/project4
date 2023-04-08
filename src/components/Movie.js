@@ -16,7 +16,7 @@ const Movie = (props) => {
                         {props.movieData.slice(0, 3).map((movie) => {
                         return(
                             <li id={movie.id} key={movie.id} className="mediaLi">
-                                <button onClick={(e) => props.movieHandleSelected(e)}>
+                                <button onClick={(e) => props.movieHandleSelected(e)} aria-label={`Select movie: ${movie.title}`}>
                                     <div id={movie.id} className="mediaBox">
                                         <figure id={movie.id} className="listImg">
                                             {movie.image === null

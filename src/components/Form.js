@@ -303,33 +303,35 @@ const Form = () => {
             <form id="userInputForm" onSubmit={handleSubmit}>
                 <label htmlFor="userInput">Search for a title:</label>
                 <input type="text" id="userInput" onChange={handleChange} value={userInput}/>
-                <button>Search</button>
+                <button aria-label="Search title">Search</button>
             </form>
 
-            {
-                componentRender === false
-                ? <h2>Welcome! Please search for your favourite movie / book title to begin!</h2>
-                : movieError === true && bookError === true 
-                    ? <h3>No Results(Error component)</h3>
-                    : <div>
-                        {bookData === "" && movieData === ""
-                        ? null
-                        : <div className="formSuccessBox">
-                            <h3 className="mediaHelp">Choose one movie and one book to compare!</h3>
-                            <div className="mediaListFlex">
-                                <Book bookData={bookData} bookError={bookError} bookHandleSelected={bookHandleSelected} selectedBook={selectedBook} />
-                                <Movie movieData={movieData} movieError={movieError} movieHandleSelected={movieHandleSelected} selectedMovie={selectedMovie} />
-                            </div>
-                            <h3 className="mediaHelp">Don't see your book or movie? Try searching something more specific!</h3>
-                        </div>
-                        }
-                        {
-                            result === ""
+            <section aria-live="polite">
+                {
+                    componentRender === false
+                    ? <h2>Welcome! Please search for your favourite movie / book title to begin!</h2>
+                    : movieError === true && bookError === true 
+                        ? <h3>No Results(Error component)</h3>
+                        : <div>
+                            {bookData === "" && movieData === ""
                             ? null
-                            : <Comparison result={result} />
-                        }                        
-                    </div>
-        }               
+                            : <div className="formSuccessBox">
+                                <h3 className="mediaHelp">Choose one movie and one book to compare!</h3>
+                                <div className="mediaListFlex">
+                                    <Book bookData={bookData} bookError={bookError} bookHandleSelected={bookHandleSelected} selectedBook={selectedBook} />
+                                    <Movie movieData={movieData} movieError={movieError} movieHandleSelected={movieHandleSelected} selectedMovie={selectedMovie} />
+                                </div>
+                                <h3 className="mediaHelp">Don't see your book or movie? Try searching something more specific!</h3>
+                            </div>
+                            }
+                            {
+                                result === ""
+                                ? null
+                                : <Comparison result={result} />
+                            }                        
+                        </div>
+                }   
+            </section>            
         </div>
     )
 }

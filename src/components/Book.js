@@ -18,12 +18,12 @@ const Book = (props) => {
                     {props.bookData.slice(0, 3).map((book) => {
                     return(
                         <li key={book.id} className="mediaLi" id={book.id}>
-                            <button onClick={(e) => props.bookHandleSelected(e)}>
-                                <div id={book.id} className="mediaBox">  
+                            <button onClick={(e) => props.bookHandleSelected(e)} aria-label={`Select ${book.title} by ${book.author}`}>
+                                <div id={book.id} className="mediaBox" role="listitem">  
                                     <figure id={book.id} className="listImg">
                                         {book.image === null
-                                        ? <img src={placeholder} alt="no book cover found"/>
-                                        : <img src={book.image} alt={book.title}/>}
+                                        ? <img src={placeholder} alt="Book cover not available"/>
+                                        : <img src={book.image} alt={`Book cover of ${book.title} by ${book.author}`}/>}
                                     </figure>
                                     <div id={book.id} className="listTitleSort">
                                         <h4>{book.title}</h4>
@@ -39,6 +39,9 @@ const Book = (props) => {
                 </ul>
             }
         </>
+        );
+    }
+
 
         // li {bookArrayData[0]}
 
@@ -56,7 +59,6 @@ const Book = (props) => {
                 // rating
             // anything else we want to show with a movie? could be a ternary message that says "not as good as the book" or "better than the book" depending on result
         // end of ternery
-    );
-};
+
 
 export default Book;
