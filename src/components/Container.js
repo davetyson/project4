@@ -7,7 +7,7 @@ function Container() {
       <div className="app">
         <Header />
         <nav className="searchBar">
-            {/* test */}
+            test
         </nav>
         <main className="contentArea wrapper">
             <Form />
