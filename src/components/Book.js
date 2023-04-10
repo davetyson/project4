@@ -12,22 +12,22 @@ const Book = (props) => {
        <>
             {
                 props.isBookLoading === true 
-                ? <ReactLoading type={"bars"} color={"#5DA9C1"} height={100} width={"100%"}/>
+                ? <ReactLoading className={"loadingBar"}type={"bars"} color={"#5DA9C1"} height={1} width={"25%"} aria-label={'Loading book data'}/>
                 :  props.selectedBook
                     ? <UserMedia selectedMovie={props.selectedBook} />
-                    : <ul> 
+                    : <ul aria-live="polite"> 
                         <li className="mediaLi">
                             <h3 className="mediaTitle">Books</h3>
                         </li>
                         {props.bookData.slice(0, 3).map((book) => {
                         return(
                             <li key={book.id} className="mediaLi" id={book.id}>
-                                <button onClick={(e) => props.bookHandleSelected(e)}>
+                                <button onClick={(e) => props.bookHandleSelected(e)} aria-label={`Select ${book.title} by ${book.author}`}>
                                     <div id={book.id} className="mediaBox">  
                                         <figure id={book.id} className="listImg">
                                             {book.image === null
                                             ? <img src={placeholder} alt="no book cover found"/>
-                                            : <img src={book.image} alt={book.title}/>}
+                                            : <img src={book.image} alt={`Book cover of ${book.title} by ${book.author}`}/>}
                                         </figure>
                                         <div id={book.id} className="listTitleSort">
                                             <h4>{book.title}</h4>
@@ -45,6 +45,9 @@ const Book = (props) => {
             }
             
         </>
+        );
+    }
+
 
         // li {bookArrayData[0]}
 
@@ -62,7 +65,6 @@ const Book = (props) => {
                 // rating
             // anything else we want to show with a movie? could be a ternary message that says "not as good as the book" or "better than the book" depending on result
         // end of ternery
-    );
-};
+
 
 export default Book;

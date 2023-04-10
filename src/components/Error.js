@@ -14,7 +14,7 @@ const Error = (props) => {
         <>
             {/* If there is an error and the user hasn't clicked to close it, show the error window */}
             { error === true ?
-            <div className="showError">
+            <div className="showError" aria-live="assertive">
                 <p>There has been an error</p>
                 <button onClick={()=>{setError(false)}}>X</button>
             </div> : null }
