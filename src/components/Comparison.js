@@ -69,7 +69,7 @@ const Comparison = ({result, selectedBook}) => {
                     ? <div className="progressBarContainer">
 
                         <div className="progressBarContent">
-                            <span className="progressText">Reading the book...</span>
+                            <span>Reading the book...</span>
                             <div className="progressBar">
                                 <div className="barStyle" 
                                     style={{width: `${filled}%`}}>
@@ -80,7 +80,7 @@ const Comparison = ({result, selectedBook}) => {
                         </div>
 
                         <div className="progressBarContent">
-                            <span className="progressText">Watching the movie...</span>
+                            <span>Watching the movie...</span>
                             <div className="progressBar">
                                 <div className="barStyle" 
                                     style={{width: `${filled}%`}}>         
