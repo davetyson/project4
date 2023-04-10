@@ -298,9 +298,10 @@ const Form = () => {
             <form id="userInputForm" onSubmit={handleSubmit}>
                 <label htmlFor="userInput">Search for a title:</label>
                 <input type="text" id="userInput" onChange={handleChange} value={userInput}/>
-                <button>Search</button>
+                <button aria-label="Search title">Search</button>
             </form>
-
+    
+            <section aria-live="polite">
             {
                 componentRender === false
                 ? <h2>Welcome! Please search for your favourite movie / book title to begin!</h2>
@@ -339,9 +340,11 @@ const Form = () => {
                             />
                         }                        
                     </div>
-            }               
+            }
+            </section>         
         </div>
     )
+    
 }
 
 export default Form;

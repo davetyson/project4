@@ -12,8 +12,8 @@ const UserMedia = (props) => {
                             ? <img src={placeholder} alt="no poster found"/>
                             : <img src={props.selectedMovie.image} alt={props.selectedMovie.title} />
                         }
+                    <figcaption>{props.selectedMovie.title}</figcaption>
                     </figure>
-                    <h4 className="mediaRating">{Math.round(props.selectedMovie.rating)}%</h4>
                     <h3 className="userMediaDescription">{props.selectedMovie.description}</h3>
                     <h3 className="userMediaYear">{props.selectedMovie.published}</h3>
             </section>

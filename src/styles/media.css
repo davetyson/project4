@@ -131,11 +131,8 @@
     font-size: 3rem;
 }
 
-.mediaRating {
-    font-size: 4rem;
-}
-
 .userMediaDescription {
+    display: inline-block;
     font-weight: 400;
     margin: 10px;
     text-align: left;
@@ -149,9 +146,18 @@
     margin: 5px auto;
 }
 
+.loadingBar {
+    padding-top: 50px 0px 50px 0px;
+}
+
 /* Media queries */
 @media only screen and (max-width: 768px) {
     .userMediaBox {
         width: 100%;
+    }
+
+    .userMediaYear,
+    .userMediaDescription {
+        display: none;
     }
   }

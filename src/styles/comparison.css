@@ -19,7 +19,7 @@
 
 
     /* border: 1px solid red; */
-    background-color: rgba(0, 0, 0, 0.425);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #resultContainer.hidden {
@@ -32,35 +32,41 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    /* border: 1px solid blue; */
-    background-color: #F4E6E8;
+    background-color: #5DA9C1;
     max-width: 60%;
     min-height: 50%;
     overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0px 0px 5px #313131;
+    transition: 0.3s;
+}
+
+#resultContainer .wrapper h1, h2{
+    color: #ffffff;
 }
 
 #resultContainer .wrapper span.close {
-    color: red;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 3rem;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
     font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.288);
-    /* border: 1px solid rgba(0, 0, 0, 0.171); */
+    border: 2px solid #ffffff;
     border-radius: 5px;
-    padding: 10px;
+    padding: 3px 8px;
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 10px;
+    top: 10px;
     cursor: pointer;
 }
 
 #resultContainer .wrapper span.close:hover {
-    color: black;
+    color: #5DA9C1;
+    background-color: #ffffff;
 }
 
 
 #resultContainer .wrapper .progressBarContainer {
-    background-color: rgba(0, 0, 0, 0.24);
+    background-color: #5DA9C1;
     width: 100%;
     height: 100%;
     display: flex;
@@ -92,7 +98,7 @@
     height: 15px;
     border-radius: 5px;
     background-color: aliceblue;
-    border: 1px solid black;
+    border: 1px solid #ffffff;
     margin: 0 10px;
     display: flex;
     flex-direction: column;
@@ -103,17 +109,21 @@
 #resultContainer .wrapper .progressBarContainer .progressBarContent span.percent {
     height: 20px;
     width: fit-content;    
-    /* border: 1px solid red; */
-
     position: absolute;
     top: 0;
     right: 90px;
+    color: #ffffff;
 }
+
+.progressText {
+    color: #ffffff;
+    font-weight: 600;
+}
+
 
 #resultContainer .wrapper .progressBarContainer .progressBarContent .progressBar .barStyle {
     height: 100%;
     background-color: #5DA9C1;
     transition: width 0.5s;
 }
-
 
