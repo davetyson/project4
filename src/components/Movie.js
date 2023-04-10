@@ -10,7 +10,7 @@ const Movie = (props) => {
        <>
             { 
                 props.isMovieLoading === true
-                ? <ReactLoading type={"bars"} color={"#5DA9C1"} height={100} />
+                ? <ReactLoading className={"loadingBar"} type={"bars"} color={"#5DA9C1"} height={1} width={"25%"}/>
                 : props.selectedMovie
                     ? <UserMedia selectedMovie={props.selectedMovie} />
                     : <ul> 

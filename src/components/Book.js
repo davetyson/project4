@@ -12,7 +12,7 @@ const Book = (props) => {
        <>
             {
                 props.isBookLoading === true 
-                ? <ReactLoading type={"bars"} color={"#5DA9C1"} height={100} width={"100%"}/>
+                ? <ReactLoading className={"loadingBar"}type={"bars"} color={"#5DA9C1"} height={1} width={"25%"}/>
                 :  props.selectedBook
                     ? <UserMedia selectedMovie={props.selectedBook} />
                     : <ul> 

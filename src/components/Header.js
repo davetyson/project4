@@ -2,7 +2,7 @@
 
 // import components/CSS:
     // global.css
-import '../styles/global.css';
+    import '../styles/global.css';
     // header.css
 import '../styles/header.css';
     // Logo image
