@@ -1,0 +1,163 @@
+/* Media (Movie.js / Book.js) styles */
+
+/* Initial Media List styles */
+.mediaTitle,
+.mediaHelp {
+    border: 1px solid #000;
+    border-radius: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    padding: 10px;
+    display: inline-block;
+    width: calc(100% - 20px);
+}
+
+.mediaTitle {
+    width: calc(100% - 20px);
+    margin: 5px 10px;
+}
+
+.mediaHelp {
+    width: calc(100% - 40px);
+    margin: 10px 10px;
+}
+
+.mediaLi {
+    margin-bottom: 5px;
+}
+
+.mediaLi button {
+    border: 1px solid #000;
+    border-radius: 15px;
+    padding: 5px;
+    transition: 0.2s;
+    width: 100%;
+}
+
+.mediaLi button:hover,
+.mediaLi button:focus {
+    background-color: #000;
+    color: #FFF;
+}
+
+.mediaBox {
+    display: flex;
+    margin: 20px;
+    height: 150px;
+}
+
+.mediaBox h4,
+.mediaBox h5 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+}
+
+.mediaBox figure,
+.mediaBox h4,
+.mediaBox h5 {
+    margin: 0 auto;
+}
+
+.listImg {
+    width: fit-content;
+    height: 152px;
+    border: 1px solid #FFF;
+    border-radius: 15px;
+}
+
+.listImg img {
+    height: 150px;
+}
+
+.listTitleSort {
+    height: 100%;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.listTitleSort h4 {
+    display: inline-block;
+}
+
+.listTitleSort h5 {
+    font-weight: 400;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.mediaListDescription {
+    font-weight: 400;
+    width: calc(50% - 10px);
+    height: 150px;
+    padding-left: 10px;
+    overflow-y: scroll;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+@media only screen and (max-width: 768px) {
+    .moviesTitle {
+        margin-top: 20px;
+    }
+  }
+
+  /* Full Media Display Page styles */
+
+.userMediaBox {
+    width: 50%;
+    border: 1px solid #000;
+    border-radius: 15px;
+    margin: 5px 10px;
+    padding: 10px;
+    align-content: center;
+}
+
+.userMediaBox img {
+    margin: 0 auto;
+    height: 300px;
+}
+
+.userMediaTitle,
+.mediaRating {
+    font-family: 'Roboto', sans-serif;
+    display: inline-block;
+    width: calc(100% - 20px);
+    margin: 5px auto;
+}
+
+.userMediaTitle {
+    font-size: 3rem;
+}
+
+.userMediaDescription {
+    display: inline-block;
+    font-weight: 400;
+    margin: 10px;
+    text-align: left;
+}
+
+.userMediaYear {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    display: inline-block;
+    width: calc(100% - 20px);
+    margin: 5px auto;
+}
+
+.loadingBar {
+    padding-top: 50px 0px 50px 0px;
+}
+
+/* Media queries */
+@media only screen and (max-width: 768px) {
+    .userMediaBox {
+        width: 100%;
+    }
+
+    .userMediaYear,
+    .userMediaDescription {
+        display: none;
+    }
+  }
