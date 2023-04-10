@@ -247,7 +247,7 @@ const Form = () => {
 
         }
         else {
-            alert("Please, inform the title!");
+            alert("Please enter a book or movie title!");
         }
     }
 
