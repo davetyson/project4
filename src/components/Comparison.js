@@ -71,7 +71,7 @@ const Comparison = ({result, selectedBook}) => {
                         <div className="progressBarContent">
                             <span className="progressText">Reading the book...</span>
                             <div className="progressBar"
-                                role='Progress bar'
+                                aria-role='Progress bar'
                                 aria-valuenow={filled}
                                 aria-valuemin='0'
                                 aria-valuemax='100'
@@ -88,9 +88,9 @@ const Comparison = ({result, selectedBook}) => {
                         <div className="progressBarContent">
                             <span className="progressText">Watching the movie...</span>
                             <div className="progressBar"
-                                role='Progress bar'
+                                aria-role='Progress bar'
                                 aria-valuenow={filled}
-                                aria-voluemin='0'
+                                aria-valuemin='0'
                                 aria-valuemax='100'
                                 aria-label="Progress on watching the movie">
                                 <div className="barStyle" 
