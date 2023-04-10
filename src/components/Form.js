@@ -328,9 +328,6 @@ const Form = () => {
                                     isMovieLoading={isMovieLoading} 
                                 />
                             </div>
-                        </div>
-                        }
-                         </div>
                             <h3 className="mediaHelp">Don't see your book or movie? Try searching something more specific!</h3>
                         </div>
                         }
