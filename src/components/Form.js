@@ -56,6 +56,8 @@ const Form = () => {
             // Movie API request
             // Start load screen to wait for the API data
             setIsMovieLoading(true);
+            setIsBookLoading(true);
+
             axios({
                 url: "https://api.themoviedb.org/3/search/movie",
                 params: {
@@ -139,14 +141,12 @@ const Form = () => {
                     // If no movie is found, set error handling to true
                     setMovieError(true);
                 }
-
+                
                 // Stop load screen
                 setIsMovieLoading(false);
             });
 
             // Book API request
-            // Start load screen to wait for the API data
-            setIsBookLoading(true);
             axios({
                 url: "https://www.googleapis.com/books/v1/volumes",
                 params: {

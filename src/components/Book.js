@@ -6,13 +6,15 @@ import UserMedia from './UserMedia.js';
 
 const Book = (props) => {
 
-    // console.log(props.selectedBook);
-
     return (
        <>
             {
                 props.isBookLoading === true 
-                ? <ReactLoading className={"loadingBar"}type={"bars"} color={"#5DA9C1"} height={1} width={"25%"} aria-label={'Loading book data'}/>
+                ? <ul className="loadingUl">
+                    <li className="mediaLiLoading">
+                        <ReactLoading className={"loadingBar"}type={"bars"} color={"#5DA9C1"} aria-label={'Loading book data'}/>
+                    </li>
+                </ul>
                 :  props.selectedBook
                     ? <UserMedia selectedMovie={props.selectedBook} />
                     : <ul aria-live="polite"> 
@@ -40,10 +42,8 @@ const Book = (props) => {
                             </li> 
                             )
                         })}
-                    </ul>
-                
-            }
-            
+                    </ul>                
+            }            
         </>
         );
     }
@@ -65,6 +65,5 @@ const Book = (props) => {
                 // rating
             // anything else we want to show with a movie? could be a ternary message that says "not as good as the book" or "better than the book" depending on result
         // end of ternery
-
 
 export default Book;
