@@ -8,11 +8,15 @@ const Comparison = ({result, selectedBook}) => {
     const [isRunning, setIsRunning] = useState(true);
     const [render, setRender] = useState("progressBar");
 
+    // useState to get the current screen size
     const[windowSize, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight});
+
+    // function to get the new screen size when the screen is resized 
     const detectSize = () => {
         setWindowSize({width: window.innerWidth, height: window.innerHeight});
     }
 
+    // useEffect to listen for screen resize, and update the useState with the new size
     useEffect(() => {
         window.addEventListener("resize", detectSize);
 
@@ -21,6 +25,7 @@ const Comparison = ({result, selectedBook}) => {
         } 
     }, [windowSize]);
 
+    // Check the props and get the comparison to render the winner
     useEffect(() => {
         if(result === "movie") {
             if(selectedBook.pageCount === 0) {
@@ -44,20 +49,25 @@ const Comparison = ({result, selectedBook}) => {
 
     }, [result, selectedBook.pageCount]);
 
+    // useEffect to activate load progressBar and switch the component to render
     useEffect(() => {
+        //setTimeout to count from 2 to 100, and update the percentage text 
         if(filled < 100 && isRunning === true) {
             setTimeout(() => setFilled(prev => prev += 2), 60);
         }
         else if(filled === 100) {
+            // stop the loadBar and switch to result screen
             setIsRunning(false);
             setRender("result");
         }
     }, [filled, isRunning]);
 
+    // handle click to close the result modal element
     const handleClick = (e) => {
         e.target.parentElement.parentElement.classList.add("hidden");
     }
 
+    // render the result conditionally 
     return (
         <div className="resultContainer" id="resultContainer">   
                  	
