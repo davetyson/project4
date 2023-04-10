@@ -13,7 +13,7 @@ const Movie = (props) => {
                 ? <ReactLoading className={"loadingBar"} type={"bars"} color={"#5DA9C1"} height={1} width={"25%"}/>
                 : props.selectedMovie
                     ? <UserMedia selectedMovie={props.selectedMovie} />
-                    : <ul> 
+                    : <ul aria-label='Movie list'> 
                         <li className="mediaLi">
                             <h3 className="mediaTitle moviesTitle">Movies</h3>
                         </li>
@@ -24,7 +24,7 @@ const Movie = (props) => {
                                         <div id={movie.id} className="mediaBox">
                                             <figure id={movie.id} className="listImg">
                                                 {movie.image === null
-                                                ? <img src={placeholder} alt="no poster found"/>
+                                                ? <img src={placeholder} alt="Movie poster not available"/>
                                                 : <img src={movie.image} alt={movie.title}/>}
                                             </figure>
                                             <div id={movie.id} className="listTitleSort">

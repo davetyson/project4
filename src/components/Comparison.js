@@ -62,7 +62,7 @@ const Comparison = ({result, selectedBook}) => {
         <div className="resultContainer" id="resultContainer">   
                  	
 	      	<div className="wrapper">
-                <span className="close" onClick={handleClick}>X</span>   
+                <span className="close" onClick={handleClick} role='button' aria-hidden='true'>X</span>   
                 
                 {
                     render === "progressBar"
@@ -70,7 +70,13 @@ const Comparison = ({result, selectedBook}) => {
 
                         <div className="progressBarContent">
                             <span className="progressText">Reading the book...</span>
-                            <div className="progressBar">
+                            <div className="progressBar"
+                                role='Progress bar'
+                                aria-valuenow={filled}
+                                aria-valuemin='0'
+                                aria-valuemax='100'
+                                aria-label="Progress on reading the book"
+                                >
                                 <div className="barStyle" 
                                     style={{width: `${filled}%`}}>
                                 </div>             
@@ -81,7 +87,12 @@ const Comparison = ({result, selectedBook}) => {
 
                         <div className="progressBarContent">
                             <span className="progressText">Watching the movie...</span>
-                            <div className="progressBar">
+                            <div className="progressBar"
+                                role='Progress bar'
+                                aria-valuenow={filled}
+                                aria-voluemin='0'
+                                aria-valuemax='100'
+                                aria-label="Progress on watching the movie">
                                 <div className="barStyle" 
                                     style={{width: `${filled}%`}}>         
                                 </div> 
