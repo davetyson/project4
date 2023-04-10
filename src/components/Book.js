@@ -3,6 +3,7 @@ import '../styles/media.css';
 import '../styles/global.css';
 import placeholder from '../assets/placeHolder.png'
 import UserMedia from './UserMedia.js';
+import Error from "./Error.js";
 
 const Book = (props) => {
 
@@ -15,7 +16,9 @@ const Book = (props) => {
                         <ReactLoading className={"loadingBar"}type={"bars"} color={"#5DA9C1"} aria-label={'Loading book data'}/>
                     </li>
                 </ul>
-                :  props.selectedBook
+                : props.bookError === true
+                ? <Error userSearch={props.userSearch} apiError="Book" />
+                : props.selectedBook
                     ? <UserMedia selectedMovie={props.selectedBook} />
                     : <ul aria-live="polite"> 
                         <li className="mediaLi">

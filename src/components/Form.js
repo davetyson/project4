@@ -4,6 +4,7 @@ import "../styles/form.css";
 import Book from "./Book.js";
 import Movie from "./Movie.js";
 import Comparison from "./Comparison.js";
+import Error from "./Error.js";
 
 const Form = () => {
     const [movieData, setMovieData] = useState([]);
@@ -18,6 +19,7 @@ const Form = () => {
     const [result, setResult] = useState("");
     const [isMovieLoading, setIsMovieLoading] = useState(false);
     const [isBookLoading, setIsBookLoading] = useState(false);
+    const [userSearch, setUserSearch] = useState("");
 
     // Build an useEffect to make the comparison after the user pick a movie and a book.
     useEffect(() => {
@@ -57,6 +59,9 @@ const Form = () => {
             // Start load screen to wait for the API data
             setIsMovieLoading(true);
             setIsBookLoading(true);
+
+            //set the userSearch to error handling
+            setUserSearch(userInput);
 
             axios({
                 url: "https://api.themoviedb.org/3/search/movie",
@@ -306,7 +311,7 @@ const Form = () => {
                 componentRender === false
                 ? <h2>Welcome! Please search for your favourite movie / book title to begin!</h2>
                 : movieError === true && bookError === true 
-                    ? <h3>No Results(Error component)</h3>
+                    ? <Error userSearch={userSearch} apiError="No titles"/>
                     : <div>
                         {bookData === "" && movieData === ""
                         ? null
@@ -319,6 +324,7 @@ const Form = () => {
                                     bookHandleSelected={bookHandleSelected} 
                                     selectedBook={selectedBook} 
                                     isBookLoading={isBookLoading}
+                                    userSearch={userSearch}
                                 />
                                 <Movie 
                                     movieData={movieData} 
@@ -326,6 +332,7 @@ const Form = () => {
                                     movieHandleSelected={movieHandleSelected} 
                                     selectedMovie={selectedMovie}
                                     isMovieLoading={isMovieLoading} 
+                                    userSearch={userSearch}
                                 />
                             </div>
                             <h3 className="mediaHelp">Don't see your book or movie? Try searching something more specific!</h3>
