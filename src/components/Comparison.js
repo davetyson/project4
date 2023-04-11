@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import "../styles/comparison.css";
 import ReactConfetti from "react-confetti";
 
-const Comparison = ({result, selectedBook}) => {
+const Comparison = ({result, selectedBook, handleClose}) => {
     const [comparison, setComparison] = useState("");
     const [filled, setFilled] = useState(0);
     const [isRunning, setIsRunning] = useState(true);
     const [render, setRender] = useState("progressBar");
-
     const[windowSize, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight});
     const detectSize = () => {
         setWindowSize({width: window.innerWidth, height: window.innerHeight});
@@ -54,15 +53,13 @@ const Comparison = ({result, selectedBook}) => {
         }
     }, [filled, isRunning]);
 
-    const handleClick = (e) => {
-        e.target.parentElement.parentElement.classList.add("hidden");
-    }
+
 
     return (
         <div className="resultContainer" id="resultContainer">   
                  	
 	      	<div className="wrapper">
-                <span className="close" onClick={handleClick} role='button' aria-hidden='true'>X</span>   
+                <span className="close" onClick={handleClose} role='button' aria-hidden='true'>X</span>   
                 
                 {
                     render === "progressBar"
@@ -71,7 +68,7 @@ const Comparison = ({result, selectedBook}) => {
                         <div className="progressBarContent">
                             <span className="progressText">Reading the book...</span>
                             <div className="progressBar"
-                                role='progressbar'
+                                role='Progress bar'
                                 aria-valuenow={filled}
                                 aria-valuemin='0'
                                 aria-valuemax='100'
@@ -88,9 +85,9 @@ const Comparison = ({result, selectedBook}) => {
                         <div className="progressBarContent">
                             <span className="progressText">Watching the movie...</span>
                             <div className="progressBar"
-                                role='progressbar'
+                                role='Progress bar'
                                 aria-valuenow={filled}
-                                aria-valuemin='0'
+                                aria-voluemin='0'
                                 aria-valuemax='100'
                                 aria-label="Progress on watching the movie">
                                 <div className="barStyle" 

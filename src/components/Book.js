@@ -14,7 +14,7 @@ const Book = (props) => {
                 props.isBookLoading === true 
                 ? <ReactLoading className={"loadingBar"}type={"bars"} color={"#5DA9C1"} height={1} width={"25%"} aria-label={'Loading book data'}/>
                 :  props.selectedBook
-                    ? <UserMedia selectedMovie={props.selectedBook} />
+                    ? <UserMedia selectedMovie={props.selectedBook} bookRate={props.bookRate} media='book' />
                     : <ul aria-live="polite"> 
                         <li className="mediaLi">
                             <h3 className="mediaTitle">Books</h3>
