@@ -15,7 +15,7 @@ const Movie = (props) => {
                 props.isMovieLoading === true
                 ? <ul className="loadingUl">
                     <li className="mediaLiLoading">
-                        <ReactLoading className={"loadingBar"} type={"bars"} color={"#5DA9C1"} />
+                        <ReactLoading className={"loadingBar"} type={"bars"} color={"#285B6C"} />
                     </li>
                 </ul>
                 : props.movieError === true 

@@ -34,7 +34,7 @@
 
 #resultContainer h1, 
 #resultContainer h2 {
-    color: #ffffff;
+    color: #000000;
 }
 
 #resultContainer h2 {
@@ -42,11 +42,11 @@
 }
 
 .close {
-    color: #ffffff;
+    color: #000000;
     font-family: 'Roboto', sans-serif;
     font-size: 2rem;
     font-weight: bold;
-    border: 2px solid #ffffff;
+    border: 2px solid #000000;
     border-radius: 5px;
     padding: 3px 8px;
     position: absolute;
@@ -77,7 +77,7 @@
     height: fit-content;
     display: flex;
     justify-content: flex-end;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     position: relative;
     margin: 10px auto;
     padding: 0;
@@ -89,8 +89,8 @@
     width: 200px;
     height: 15px;
     border-radius: 5px;
-    background-color: aliceblue;
-    border: 1px solid #ffffff;
+    background-color: #fff;
+    border: 1px solid #000000;
     margin: 0 10px;
     display: flex;
     flex-direction: column;
@@ -107,7 +107,7 @@
 } */
 
 .progressText {
-    color: #ffffff;
+    color: #000000;
     font-weight: 600;
     display: inline-block;
     width: 100%;
@@ -116,7 +116,7 @@
 
 .barStyle {
     height: 100%;
-    background-color: #5DA9C1;
+    background-color: #285B6C;
     transition: width 0.5s;
 }
 

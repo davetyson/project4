@@ -29,7 +29,7 @@ form {
 }
 
 form label {
-    color: #5DA9C1;
+    color: #000000;
     font-size: 2rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -55,7 +55,7 @@ form button {
 }
 
 form button {
-    color: #ffffff;
+    color: #000000;
     border: 1px solid #5DA9C1;
     border-radius: 10px;
     padding: 5px 20px;
@@ -64,8 +64,8 @@ form button {
 }
 
 form button:hover {
-    color: #5DA9C1;
-    border: 1px solid #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
     background-color: #ffffff;
 }
 
