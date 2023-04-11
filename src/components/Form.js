@@ -193,14 +193,13 @@ const Form = () => {
                             newBookVotes = 0;
                         }
 
-                        //handle the book image in cse the book has no image
+                        //handle the book image in case the book has no image
                         let bookImg = "";
                         if(bookDataObj[index].volumeInfo.imageLinks) {
-                            // console.log("true");
                             bookImg = bookDataObj[index].volumeInfo.imageLinks.thumbnail;
+                            bookImg = bookImg.slice(0, 4) + "s" + bookImg.slice(4);
                         }
                         else {
-                            // console.log("false");
                             bookImg = null;
                         }
 
