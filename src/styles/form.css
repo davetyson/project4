@@ -12,6 +12,10 @@
 .formComponent h2 {
     margin: 10vh auto;
     width: 80%;
+    font-weight: 700;
+    border: 1px solid #000;
+    border-radius: 15px;
+    padding: 10px;
 }
 
 form {
@@ -31,7 +35,7 @@ form label {
 }
 
 form input {
-    color: #5DA9C1;
+    color: #000;
     font-size: 1.6rem;
     padding: 5px;
     border-radius: 5px;
