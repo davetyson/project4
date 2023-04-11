@@ -27,7 +27,7 @@ const UserMedia = (props) => {
                     {ratings === ''
                             ? null 
                             : <h3 className="ratingText">{ratings}%</h3>}
-                    <h3 className="userMediaDescription">{props.selectedMovie.description}</h3>
+                    <p className="userMediaDescription">{props.selectedMovie.description}</p>
                     <h3 className="userMediaYear">{props.selectedMovie.published}</h3>
             </section>
         </>
