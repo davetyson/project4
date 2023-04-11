@@ -322,7 +322,7 @@ const Form = () => {
             <section aria-live="polite">
             {
                 componentRender === false
-                ? <h2>Welcome! Please search for your favourite movie / book title to begin!</h2>
+                ? <h2 className="welcomeMsg">Welcome! Please search for your favourite movie / book title to begin!</h2>
                 : movieError === true && bookError === true 
                     ? <Error userSearch={userSearch} apiError="No titles"/>
                     : <div>

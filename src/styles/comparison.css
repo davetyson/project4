@@ -33,8 +33,12 @@
 }
 
 #resultContainer h1, 
-#resultContainer h2{
+#resultContainer h2 {
     color: #ffffff;
+}
+
+#resultContainer h2 {
+    margin: 20px 10px 10px 10px;
 }
 
 .close {
@@ -93,14 +97,14 @@
     justify-content: center;
 }
 
-.percent {
+/* .percent {
     height: 20px;
     width: fit-content;    
     position: absolute;
     top: 0;
     right: 90px;
     color: #ffffff;
-}
+} */
 
 .progressText {
     color: #ffffff;
@@ -142,7 +146,7 @@
         width: 150px;
     }
 
-    .percent {
+    /* .percent {
         display: none;
-    }
+    } */
 }
