@@ -1,0 +1,19 @@
+/* Footer styles */
+
+footer {
+  min-height: 8vh;
+  background-color: #F4E6E8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+footer p {
+  color: #5DA9C1;
+  font-size: 1.6rem;
+  font-weight: 600;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
