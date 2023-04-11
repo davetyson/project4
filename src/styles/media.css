@@ -33,6 +33,7 @@
     transition: 0.2s;
     width: 100%;
     color: #000;
+    cursor: pointer;
 }
 
 .mediaLi button:hover,

@@ -14,7 +14,7 @@
 }
 
 #resultContainer.hidden {
-    visibility: hidden;
+    display: none;
 }
 
 #resultContainer .wrapper {

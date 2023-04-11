@@ -38,7 +38,7 @@ const Book = (props) => {
                                             <h4>{book.title}</h4>
                                             <h5>{book.author}</h5>
                                             <h5 className="mediaListYear">{book.published}</h5>
-                                            <h5 className="mediaListDescription">{book.description}</h5>
+                                            <p className="mediaListDescription">{book.description}</p>
                                         </div>
                                     </div>
                                 </button>          
