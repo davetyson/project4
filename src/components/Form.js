@@ -13,7 +13,6 @@ const Form = () => {
     const [bookError, setBookError] = useState(false);
     const [userInput, setUserInput] = useState("");
     const [componentRender, setComponentRender] = useState(false);
-    // const [generalError, setGeneralError] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState("");
     const [selectedBook, setSelectedBook] = useState("");
     const [result, setResult] = useState("");
@@ -146,7 +145,7 @@ const Form = () => {
                     //Fill the use state to pass down by props
                     setMovieData(newSortedMovie);
                     //set error handling to false
-                    setMovieError(false);
+                    setMovieError(false);                    
                 }
                 else {
                     // If no movie is found, set error handling to true
@@ -162,8 +161,10 @@ const Form = () => {
                 url: "https://www.googleapis.com/books/v1/volumes",
                 params: {
                     key: process.env.REACT_APP_BOOKS_API_KEY,
-                    q: userInput,
-                    printType: "books"
+                    q: `intitle:'${userInput}'`,
+                    printType: "BOOKS",
+                    filter: "partial",
+                    orderBy: "relevance"
                 }
             })
             .then(apiDataBook => {
@@ -195,13 +196,11 @@ const Form = () => {
 
                         //handle the book image in cse the book has no image
                         let bookImg = "";
-                        if(bookDataObj[index].volumeInfo.imageLinks) {
-                            
+                        if(bookDataObj[index].volumeInfo.imageLinks) {                            
                             bookImg = bookDataObj[index].volumeInfo.imageLinks.thumbnail;
                             bookImg = bookImg.slice(0, 4) + "s" + bookImg.slice(4);
                         }
                         else {
-                            // console.log("false");
                             bookImg = null;
                         }
 
@@ -324,8 +323,14 @@ const Form = () => {
             {
                 componentRender === false
                 ? <h2 className="welcomeMsg">Welcome! Please search for your favourite movie / book title to begin!</h2>
-                : movieError === true && bookError === true 
-                    ? <Error userSearch={userSearch} apiError="No titles"/>
+                : movieError === true || bookError === true 
+                    ? <Error 
+                        userSearch={userSearch}
+                        bookData={bookData}                    
+                        bookError={bookError}
+                        movieData={movieData}
+                        movieError={movieError} 
+                    />
                     : <div>
                         {bookData === "" && movieData === ""
                         ? null
