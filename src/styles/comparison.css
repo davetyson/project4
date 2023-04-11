@@ -118,12 +118,18 @@
 
 /* Media queries */
 @media only screen and (max-width: 768px) {
+    #resultContainer h1 {
+        font-size: 3.5rem;
+        margin: 50px 5px 5px 5px;
+    }
+
     .percent {
         right: 50px;
     }
 }
 
 @media only screen and (max-width: 480px) {
+
     .progressBarContainer {
         margin-left: 50px;
     }

@@ -48,6 +48,7 @@ const Form = () => {
     //Get the form submission to start the APIs call
     const handleSubmit = (e) => {
         e.preventDefault();
+        setResetText(false);
 
         //check for empty form submission
         if(userInput.trim()) {
@@ -331,7 +332,7 @@ const Form = () => {
                             <h3 className="mediaHelp">
                             {resetText
                                 ? "Search another book or movie title to play again!"
-                                : "Choose one movie and one book to compare!"}
+                                : "Choose one movie and one book to see which is better!"}
                             </h3>
                             <div className="mediaListFlex">
                                 <Book 
