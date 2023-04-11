@@ -12,7 +12,7 @@ const Book = (props) => {
                 props.isBookLoading === true 
                 ? <ul className="loadingUl">
                     <li className="mediaLiLoading">
-                        <ReactLoading className={"loadingBar"}type={"bars"} color={"#5DA9C1"} aria-label={'Loading book data'}/>
+                        <ReactLoading className={"loadingBar"}type={"bars"} color={"#285B6C"} aria-label={'Loading book data'}/>
                     </li>
                 </ul>
                 : props.selectedBook
@@ -35,7 +35,7 @@ const Book = (props) => {
                                             <h4>{book.title}</h4>
                                             <h5>{book.author}</h5>
                                             <h5 className="mediaListYear">{book.published}</h5>
-                                            <h5 className="mediaListDescription">{book.description}</h5>
+                                            <p className="mediaListDescription">{book.description}</p>
                                         </div>
                                     </div>
                                 </button>          

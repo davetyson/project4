@@ -12,7 +12,7 @@ const Movie = (props) => {
                 props.isMovieLoading === true
                 ? <ul className="loadingUl">
                     <li className="mediaLiLoading">
-                        <ReactLoading className={"loadingBar"} type={"bars"} color={"#5DA9C1"} />
+                        <ReactLoading className={"loadingBar"} type={"bars"} color={"#285B6C"} />
                     </li>
                 </ul>
                     : props.selectedMovie
@@ -34,7 +34,7 @@ const Movie = (props) => {
                                                 <div id={movie.id} className="mediaTextContainer">
                                                     <h4>{movie.title}</h4>
                                                     <h5 className="mediaListYear">{movie.published}</h5>
-                                                    <h5 className="mediaListDescription">{movie.description}</h5>
+                                                    <p className="mediaListDescription">{movie.description}</p>
                                                 </div>
                                             </div>
                                         </button>
