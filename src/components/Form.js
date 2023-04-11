@@ -48,6 +48,7 @@ const Form = () => {
     //Get the form submission to start the APIs call
     const handleSubmit = (e) => {
         e.preventDefault();
+        setResetText(false);
 
         //check for empty form submission
         if(userInput.trim()) {
@@ -257,7 +258,7 @@ const Form = () => {
 
         }
         else {
-            alert("Please, inform the title!");
+            alert("Please enter a book or movie title!");
         }
     }
 
@@ -321,7 +322,7 @@ const Form = () => {
             <section aria-live="polite">
             {
                 componentRender === false
-                ? <h2>Welcome! Please search for your favourite movie / book title to begin!</h2>
+                ? <h2 className="welcomeMsg">Welcome! Please search for your favourite movie / book title to begin!</h2>
                 : movieError === true && bookError === true 
                     ? <Error userSearch={userSearch} apiError="No titles"/>
                     : <div>
@@ -331,7 +332,7 @@ const Form = () => {
                             <h3 className="mediaHelp">
                             {resetText
                                 ? "Search another book or movie title to play again!"
-                                : "Choose one movie and one book to compare!"}
+                                : "Choose one movie and one book to see which is better!"}
                             </h3>
                             <div className="mediaListFlex">
                                 <Book 

@@ -36,11 +36,11 @@ const Movie = (props) => {
                                                     ? <img src={placeholder} alt="Movie poster not available"/>
                                                     : <img src={movie.image} alt={movie.title}/>}
                                                 </figure>
-                                                <div id={movie.id} className="listTitleSort">
+                                                <div id={movie.id} className="mediaTextContainer">
                                                     <h4>{movie.title}</h4>
                                                     <h5 className="mediaListYear">{movie.published}</h5>
+                                                    <h5 className="mediaListDescription">{movie.description}</h5>
                                                 </div>
-                                                <h5 className="mediaListDescription">{movie.description}</h5>
                                             </div>
                                         </button>
                                     </li> 
