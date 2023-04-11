@@ -21,7 +21,7 @@ const Movie = (props) => {
                 : props.movieError === true 
                     ? <Error userSearch={props.userSearch} apiError="Movie" />
                     : props.selectedMovie
-                        ? <UserMedia selectedMovie={props.selectedMovie} />
+                        ? <UserMedia selectedMovie={props.selectedMovie} movieRate={props.movieRate} media='movie' />
                         : <ul aria-label='Movie list'> 
                             <li className="mediaLi">
                                 <h3 className="mediaTitle moviesTitle">Movies</h3>

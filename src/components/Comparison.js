@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/comparison.css";
 import ReactConfetti from "react-confetti";
 
-const Comparison = ({result, selectedBook}) => {
+const Comparison = ({result, selectedBook, handleClose}) => {
     const [comparison, setComparison] = useState("");
     const [filled, setFilled] = useState(0);
     const [isRunning, setIsRunning] = useState(true);
@@ -62,17 +62,12 @@ const Comparison = ({result, selectedBook}) => {
         }
     }, [filled, isRunning]);
 
-    // handle click to close the result modal element
-    const handleClick = (e) => {
-        e.target.parentElement.parentElement.classList.add("hidden");
-    }
-
     // render the result conditionally 
     return (
         <div className="resultContainer" id="resultContainer">   
                  	
 	      	<div className="wrapper">
-                <span className="close" onClick={handleClick} role='button' aria-hidden='true'>X</span>   
+                <span className="close" onClick={handleClose} role='button' aria-hidden='true'>X</span>   
                 
                 {
                     render === "progressBar"

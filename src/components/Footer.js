@@ -18,7 +18,7 @@ const Footer = () => {
     return (
         // Footer generated with the current year from the useEffect above
         <footer>
-            <p>© RGBA {currentYear}. Created at Juno College.</p>
+            <p>© {currentYear}, RGBA. Created at <a href="https://junocollege.com/">Juno College.</a></p>
         </footer>
     )
 }

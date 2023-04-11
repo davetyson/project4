@@ -19,7 +19,7 @@ const Book = (props) => {
                 : props.bookError === true
                 ? <Error userSearch={props.userSearch} apiError="Book" />
                 : props.selectedBook
-                    ? <UserMedia selectedMovie={props.selectedBook} />
+                    ? <UserMedia selectedMovie={props.selectedBook} bookRate={props.bookRate} media='book' />
                     : <ul aria-live="polite"> 
                         <li className="mediaLi">
                             <h3 className="mediaTitle">Books</h3>
