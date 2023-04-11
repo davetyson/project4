@@ -29,22 +29,22 @@ const Comparison = ({result, selectedBook, handleClose}) => {
     useEffect(() => {
         if(result === "movie") {
             if(selectedBook.pageCount === 0) {
-                setComparison("The movie is better, and there is not much info about the book!");
+                setComparison("The movie is better, because there is not much info about the book!");
             }
             else {
-                setComparison(`The movie is better, but I recommend you to read the book, it's just ${selectedBook.pageCount} pages.`);
+                setComparison(`The movie is definitely better than the book! Bonus: you don't have to read ${selectedBook.pageCount} pages, AND you can eat popcorn!`);
             }            
         }
         else if(result === "book") {
             if(selectedBook.pageCount === 0) {
-                setComparison("The book is better but, there is no much info about it!");
+                setComparison("The book is better, but there is not much info about it!");
             }
             else {
-                setComparison(`The book is better but, it's ${selectedBook.pageCount} pages.`);
+                setComparison(`The book is definitely better than the movie! Look forward to an amazing ${selectedBook.pageCount} pages!`);
             } 
         }
         else {
-            setComparison("Go for both!");
+            setComparison("You're in good hands reading the book or watching the movie! Enjoy!");
         }
 
     }, [result, selectedBook.pageCount]);
@@ -111,7 +111,10 @@ const Comparison = ({result, selectedBook, handleClose}) => {
                             width={windowSize.width} 
                             height={windowSize.height} 
                         />
-                        <h1>{result}</h1>
+                        {result === "tie" 
+                        ? <h1>It's a {result}!</h1>
+                        : <h1>The {result} is better { result === "movie" ? "🎥" : "📖" }</h1>
+                        }
                         <h2>{comparison}</h2>                         
                     </>
                 }                         		

@@ -34,12 +34,12 @@ const Book = (props) => {
                                             ? <img src={placeholder} alt="no book cover found"/>
                                             : <img src={book.image} alt={`Book cover of ${book.title} by ${book.author}`}/>}
                                         </figure>
-                                        <div id={book.id} className="listTitleSort">
+                                        <div id={book.id} className="mediaTextContainer">
                                             <h4>{book.title}</h4>
                                             <h5>{book.author}</h5>
                                             <h5 className="mediaListYear">{book.published}</h5>
+                                            <h5 className="mediaListDescription">{book.description}</h5>
                                         </div>
-                                        <h5 className="mediaListDescription">{book.description}</h5>
                                     </div>
                                 </button>          
                             </li> 

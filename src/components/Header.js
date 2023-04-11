@@ -16,7 +16,7 @@ function Header() {
             <div className="wrapper">
                 <header className="header">
                     <a href="/"><img src={logo} alt="Is the book better? Logo" className='logo' /></a>
-                    <div className="text-container">
+                    <div className="textContainer">
                         <h1><a href="/">Is the <span>book</span> better?</a></h1>
                         <h2><a href="/">Settling the <span>book vs. movie</span>  debate once and for all</a></h2>
                     </div>
