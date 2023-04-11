@@ -110,6 +110,7 @@ const Comparison = ({result, selectedBook, handleClose}) => {
                         <ReactConfetti 
                             width={windowSize.width} 
                             height={windowSize.height} 
+                            numberOfPieces={500}
                         />
                         {result === "tie" 
                         ? <h1>It's a {result}!</h1>
