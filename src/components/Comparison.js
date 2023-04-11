@@ -110,6 +110,7 @@ const Comparison = ({result, selectedBook, handleClose}) => {
                         <ReactConfetti 
                             width={windowSize.width} 
                             height={windowSize.height} 
+                            numberOfPieces={500}
                         />
                         <h1>{result}</h1>
                         <h2>{comparison}</h2>                         
