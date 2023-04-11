@@ -9,7 +9,7 @@
 }
 
 
-.formComponent h2 {
+.formComponent .welcomeMsg {
     margin: 10vh auto;
     width: 80%;
     font-weight: 700;

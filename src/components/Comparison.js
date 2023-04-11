@@ -87,7 +87,7 @@ const Comparison = ({result, selectedBook, handleClose}) => {
                                 </div>             
                             </div>   
 
-                            <span className="percent">{filled}%</span> 
+                            {/* <span className="percent">{filled}%</span>  */}
                         </div>
 
                         <div className="progressBarContent">
@@ -103,7 +103,7 @@ const Comparison = ({result, selectedBook, handleClose}) => {
                                 </div> 
                             </div>   
                            
-                            <span className="percent">{filled}%</span> 
+                            {/* <span className="percent">{filled}%</span>  */}
                         </div>                  
                     </div>  
                     : <>
