@@ -25,6 +25,7 @@ form {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    align-items: center;
 }
 
 form label {
@@ -50,6 +51,7 @@ form input:focus {
 form button {
     font-size: 2rem;
     text-transform: uppercase;
+    cursor:pointer;
 }
 
 form button {
