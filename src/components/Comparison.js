@@ -75,7 +75,7 @@ const Comparison = ({result, selectedBook, handleClose}) => {
 
                         <div className="progressBarContent">
                             <span className="progressText">Reading the book...</span>
-                            <div className="progressbar"
+                            <div className="progressBar"
                                 role='progressbar'
                                 aria-valuenow={filled}
                                 aria-valuemin='0'
