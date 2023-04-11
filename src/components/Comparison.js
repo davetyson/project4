@@ -7,11 +7,16 @@ const Comparison = ({result, selectedBook, handleClose}) => {
     const [filled, setFilled] = useState(0);
     const [isRunning, setIsRunning] = useState(true);
     const [render, setRender] = useState("progressBar");
+
+    // useState to get the current screen size
     const[windowSize, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight});
+
+    // function to get the new screen size when the screen is resized 
     const detectSize = () => {
         setWindowSize({width: window.innerWidth, height: window.innerHeight});
     }
 
+    // useEffect to listen for screen resize, and update the useState with the new size
     useEffect(() => {
         window.addEventListener("resize", detectSize);
 
@@ -20,6 +25,7 @@ const Comparison = ({result, selectedBook, handleClose}) => {
         } 
     }, [windowSize]);
 
+    // Check the props and get the comparison to render the winner
     useEffect(() => {
         if(result === "movie") {
             if(selectedBook.pageCount === 0) {
@@ -43,18 +49,20 @@ const Comparison = ({result, selectedBook, handleClose}) => {
 
     }, [result, selectedBook.pageCount]);
 
+    // useEffect to activate load progressBar and switch the component to render
     useEffect(() => {
+        //setTimeout to count from 2 to 100, and update the percentage text 
         if(filled < 100 && isRunning === true) {
             setTimeout(() => setFilled(prev => prev += 2), 60);
         }
         else if(filled === 100) {
+            // stop the loadBar and switch to result screen
             setIsRunning(false);
             setRender("result");
         }
     }, [filled, isRunning]);
 
-
-
+    // render the result conditionally 
     return (
         <div className="resultContainer" id="resultContainer">   
                  	
@@ -67,8 +75,8 @@ const Comparison = ({result, selectedBook, handleClose}) => {
 
                         <div className="progressBarContent">
                             <span className="progressText">Reading the book...</span>
-                            <div className="progressBar"
-                                role='Progress bar'
+                            <div className="progressbar"
+                                role='progressbar'
                                 aria-valuenow={filled}
                                 aria-valuemin='0'
                                 aria-valuemax='100'
@@ -85,9 +93,9 @@ const Comparison = ({result, selectedBook, handleClose}) => {
                         <div className="progressBarContent">
                             <span className="progressText">Watching the movie...</span>
                             <div className="progressBar"
-                                role='Progress bar'
+                                role='progressbar'
                                 aria-valuenow={filled}
-                                aria-voluemin='0'
+                                aria-valuemin='0'
                                 aria-valuemax='100'
                                 aria-label="Progress on watching the movie">
                                 <div className="barStyle" 

@@ -11,7 +11,7 @@ const UserMedia = (props) => {
         if(props.media === 'book')
         { setRatings(props.bookRate)}
         else{setRatings(props.movieRate)}     
-    }, [props.movieRate, props.bookRate])
+    }, [props.movieRate, props.bookRate, props.media])
 
     return (
         <>
