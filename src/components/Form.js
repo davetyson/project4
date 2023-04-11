@@ -13,7 +13,6 @@ const Form = () => {
     const [bookError, setBookError] = useState(false);
     const [userInput, setUserInput] = useState("");
     const [componentRender, setComponentRender] = useState(false);
-    // const [generalError, setGeneralError] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState("");
     const [selectedBook, setSelectedBook] = useState("");
     const [result, setResult] = useState("");
