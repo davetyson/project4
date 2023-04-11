@@ -1,8 +1,18 @@
 import '../styles/media.css';
 import '../styles/global.css';
 import placeholder from '../assets/placeHolder.png'
+import { useEffect, useState } from 'react';
 
 const UserMedia = (props) => {
+    
+    const [ratings, setRatings] = useState('')
+
+    useEffect(() => {
+        if(props.media === 'book')
+        { setRatings(props.bookRate)}
+        else{setRatings(props.movieRate)}     
+    }, [props.movieRate, props.bookRate, props.media])
+
     return (
         <>
             <section className="userMediaBox">
@@ -14,6 +24,9 @@ const UserMedia = (props) => {
                         }
                     <figcaption>{props.selectedMovie.title}</figcaption>
                     </figure>
+                    {ratings === ''
+                            ? null 
+                            : <h3>{ratings}%</h3>}
                     <h3 className="userMediaDescription">{props.selectedMovie.description}</h3>
                     <h3 className="userMediaYear">{props.selectedMovie.published}</h3>
             </section>

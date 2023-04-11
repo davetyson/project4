@@ -19,6 +19,9 @@ const Form = () => {
     const [result, setResult] = useState("");
     const [isMovieLoading, setIsMovieLoading] = useState(false);
     const [isBookLoading, setIsBookLoading] = useState(false);
+    const [resetText, setResetText] = useState(false);
+    const [bookRate, setBookRate] = useState('');
+    const [movieRate, setMovieRate] = useState('');
     const [userSearch, setUserSearch] = useState("");
 
     // Build an useEffect to make the comparison after the user pick a movie and a book.
@@ -54,6 +57,8 @@ const Form = () => {
             setResult("");
             setSelectedMovie("");
             setSelectedBook("");
+            setBookRate("");
+            setMovieRate("");
 
             // Movie API request
             // Start load screen to wait for the API data
@@ -83,7 +88,7 @@ const Form = () => {
                         let newMovieRating = "";
 
                         if(movieDataObj[index].vote_average) {
-                            newMovieRating = (movieDataObj[index].vote_average / 10) * 100;                        
+                            newMovieRating = Math.round((movieDataObj[index].vote_average / 10) * 100);                        
                         }
                         else {
                             newMovieRating = 0;
@@ -172,7 +177,7 @@ const Form = () => {
                         // handle the book rating in case the book has no rate
                         let newBookRating = "";
                         if(bookDataObj[index].volumeInfo.averageRating) {
-                            newBookRating = (bookDataObj[index].volumeInfo.averageRating / 5) * 100;
+                            newBookRating = Math.round((bookDataObj[index].volumeInfo.averageRating / 5) * 100);
                         }                    
                         else {
                             newBookRating = 0;                                                
@@ -297,6 +302,13 @@ const Form = () => {
             }
         });        
     }
+    
+    const handleClose = (e) => {
+        e.target.parentElement.parentElement.classList.add("hidden");
+        setResetText(true);
+        setBookRate(selectedBook.rating);
+        setMovieRate(selectedMovie.rating);
+    }
 
     return (
         <>
@@ -316,7 +328,11 @@ const Form = () => {
                         {bookData === "" && movieData === ""
                         ? null
                         : <div className="formSuccessBox">
-                            <h3 className="mediaHelp">Choose one movie and one book to compare!</h3>
+                            <h3 className="mediaHelp">
+                            {resetText
+                                ? "Search another book or movie title to play again!"
+                                : "Choose one movie and one book to compare!"}
+                            </h3>
                             <div className="mediaListFlex">
                                 <Book 
                                     bookData={bookData} 
@@ -324,6 +340,7 @@ const Form = () => {
                                     bookHandleSelected={bookHandleSelected} 
                                     selectedBook={selectedBook} 
                                     isBookLoading={isBookLoading}
+                                    bookRate={bookRate}
                                     userSearch={userSearch}
                                 />
                                 <Movie 
@@ -332,6 +349,7 @@ const Form = () => {
                                     movieHandleSelected={movieHandleSelected} 
                                     selectedMovie={selectedMovie}
                                     isMovieLoading={isMovieLoading} 
+                                    movieRate={movieRate}
                                     userSearch={userSearch}
                                 />
                             </div>
@@ -344,6 +362,7 @@ const Form = () => {
                             : <Comparison 
                                 result={result} 
                                 selectedBook={selectedBook}
+                                handleClose={handleClose}
                             />
                         }                        
                     </div>
