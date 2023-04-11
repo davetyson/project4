@@ -299,13 +299,13 @@ const Form = () => {
     }
 
     return (
-        <div className="formComponent">
-            <form id="userInputForm" onSubmit={handleSubmit}>
+        <>
+            <form id="userInputForm" className="searchBar" onSubmit={handleSubmit}>
                 <label htmlFor="userInput">Search for a title:</label>
                 <input type="text" id="userInput" onChange={handleChange} value={userInput}/>
                 <button aria-label="Search title">Search</button>
             </form>
-    
+    <div className="formComponent wrapper">
             <section aria-live="polite">
             {
                 componentRender === false
@@ -350,6 +350,7 @@ const Form = () => {
             }
             </section>         
         </div>
+        </>
     )
     
 }
