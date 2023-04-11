@@ -98,6 +98,20 @@
     width: calc(65% - 10px);
 }
 
+/* Error handling Style */
+ul.errorHandling {
+    margin: 10px auto;
+}
+
+ul.errorHandling li {
+    border: 1px solid #000;
+    border-radius: 15px;
+}
+
+ul.errorHandling li h3 {
+    border: none;
+}
+
 @media only screen and (max-width: 768px) {
     .moviesTitle {
         margin-top: 20px;

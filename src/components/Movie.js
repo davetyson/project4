@@ -3,11 +3,8 @@ import '../styles/global.css';
 import placeholder from '../assets/placeHolder.png'
 import UserMedia from './UserMedia';
 import ReactLoading from "react-loading";
-import Error from "./Error.js";
 
 const Movie = (props) => {
-
-    // console.log(props.movieError);
 
     return (
        <>
@@ -18,8 +15,6 @@ const Movie = (props) => {
                         <ReactLoading className={"loadingBar"} type={"bars"} color={"#5DA9C1"} />
                     </li>
                 </ul>
-                : props.movieError === true 
-                    ? <Error userSearch={props.userSearch} apiError="Movie" />
                     : props.selectedMovie
                         ? <UserMedia selectedMovie={props.selectedMovie} movieRate={props.movieRate} media='movie' />
                         : <ul aria-label='Movie list'> 
