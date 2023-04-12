@@ -25,7 +25,7 @@ main {
 }
 
 h1 {
-    color: #ffffff;
+    color: #000000;
     text-transform: uppercase;
     font-size: 5rem;
     font-weight: 400;
@@ -33,16 +33,11 @@ h1 {
 
 h1 a {
     text-decoration: none;
-    color: #ffffff;
-}
-
-h1 a:hover {
-    text-decoration: none;
-    color: #ffffff;
+    color: #000000;
 }
 
 h2 {
-    color: #000;
+    color: #000000;
     text-transform: uppercase;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -62,7 +57,7 @@ p {
 }
 
 a {
-    color: #5DA9C1;
+    color: #000000;
     text-decoration: none;
 }
 
@@ -86,7 +81,9 @@ ul {
 
 img {
     max-width: 100%;
+    width: auto;
     height: auto;
+    width: auto;
     display: block;
     border: 1px solid #000;
     border-radius: 15px;
@@ -95,15 +92,6 @@ img {
 .boldText {
     font-weight: 700;
 }
-
-/* .app {
-    background: url("../assets/bricks.jpg") repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 100%;
-} */
 
 .wrapper {
     width: 1300px;

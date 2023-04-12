@@ -3,11 +3,8 @@ import '../styles/global.css';
 import placeholder from '../assets/placeHolder.png'
 import UserMedia from './UserMedia';
 import ReactLoading from "react-loading";
-import Error from "./Error.js";
 
 const Movie = (props) => {
-
-    // console.log(props.movieError);
 
     return (
        <>
@@ -15,11 +12,9 @@ const Movie = (props) => {
                 props.isMovieLoading === true
                 ? <ul className="loadingUl">
                     <li className="mediaLiLoading">
-                        <ReactLoading className={"loadingBar"} type={"bars"} color={"#5DA9C1"} />
+                        <ReactLoading className={"loadingBar"} type={"bars"} color={"#285B6C"} />
                     </li>
                 </ul>
-                : props.movieError === true 
-                    ? <Error userSearch={props.userSearch} apiError="Movie" />
                     : props.selectedMovie
                         ? <UserMedia selectedMovie={props.selectedMovie} movieRate={props.movieRate} media='movie' />
                         : <ul aria-label='Movie list'> 
@@ -39,7 +34,7 @@ const Movie = (props) => {
                                                 <div id={movie.id} className="mediaTextContainer">
                                                     <h4>{movie.title}</h4>
                                                     <h5 className="mediaListYear">{movie.published}</h5>
-                                                    <h5 className="mediaListDescription">{movie.description}</h5>
+                                                    <p className="mediaListDescription">{movie.description}</p>
                                                 </div>
                                             </div>
                                         </button>
@@ -50,23 +45,6 @@ const Movie = (props) => {
                         </ul> 
             }  
         </>
-
-        // li {movieArrayData[0]}
-
-        // ternery: if the userMovie is set to false, then show:
-            // a list of movies from the API data in the parent Form element
-            // map out a new array of li's within a ul that all have the same formatting
-            // allow each li to be clickable and each one would change the userMovie state to true when pressed
-        // if userMovie is not set to false (aka true) then show:
-            // movie data!
-                // poster
-                // title
-                // year
-                // tagline
-                // description
-                // rating
-            // anything else we want to show with a movie? could be a ternary message that says "not as good as the movie" or "better than the movie" depending on result
-        // end of ternery
     );
 };
 

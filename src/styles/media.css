@@ -33,6 +33,7 @@
     transition: 0.2s;
     width: 100%;
     color: #000;
+    cursor: pointer;
 }
 
 .mediaLi button:hover,
@@ -52,7 +53,7 @@
 .mediaTextContainer h4,
 .mediaTextContainer h5 {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
 }
 
 .listImg {
@@ -96,6 +97,20 @@
     overflow-y: auto;
     padding-left: 10px;
     width: calc(65% - 10px);
+}
+
+/* Error handling Style */
+ul.errorHandling {
+    margin: 10px auto;
+}
+
+ul.errorHandling li {
+    border: 1px solid #000;
+    border-radius: 15px;
+}
+
+ul.errorHandling li h3 {
+    border: none;
 }
 
 @media only screen and (max-width: 768px) {
