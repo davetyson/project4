@@ -194,7 +194,7 @@ const Form = () => {
                             newBookVotes = 0;
                         }
 
-                        //handle the book image in cse the book has no image
+                        //handle the book image in case the book has no image
                         let bookImg = "";
                         if(bookDataObj[index].volumeInfo.imageLinks) {                            
                             bookImg = bookDataObj[index].volumeInfo.imageLinks.thumbnail;
