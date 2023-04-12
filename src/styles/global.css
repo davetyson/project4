@@ -97,15 +97,6 @@ img {
     font-weight: 700;
 }
 
-/* .app {
-    background: url("../assets/bricks.jpg") repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 100%;
-} */
-
 .wrapper {
     width: 1300px;
     max-width: 90%;
