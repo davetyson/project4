@@ -41,6 +41,24 @@
     margin: 20px 10px 10px 10px;
 }
 
+.refreshButton {
+    border: 1px solid #000;
+    border-radius: 15px;
+    margin: 20px auto 0 auto;
+    padding: 10px;
+    width: 50%;
+    font-size: 3rem;
+    color: #5DA9C1;
+    background-color: #000;
+    transition: 0.2s;
+}
+
+.refreshButton:hover,
+.refreshButton:focus {
+    color: #5DA9C1;
+    background-color: #FFF;
+}
+
 .close {
     color: #000000;
     font-family: 'Roboto', sans-serif;
