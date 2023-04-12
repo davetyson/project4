@@ -145,6 +145,12 @@
         margin: 50px 5px 5px 5px;
     }
 
+    .refreshButton {
+        margin: 20px auto 20px auto;
+        width: 80%;
+        font-size: 2rem;
+    }
+
     .progressBarContainer {
         margin-left: 50px;
     }
