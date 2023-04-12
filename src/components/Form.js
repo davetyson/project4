@@ -343,7 +343,6 @@ const Form = () => {
                             <div className="mediaListFlex">
                                 <Book 
                                     bookData={bookData} 
-                                    bookError={bookError} 
                                     bookHandleSelected={bookHandleSelected} 
                                     selectedBook={selectedBook} 
                                     isBookLoading={isBookLoading}
@@ -352,7 +351,6 @@ const Form = () => {
                                 />
                                 <Movie 
                                     movieData={movieData} 
-                                    movieError={movieError} 
                                     movieHandleSelected={movieHandleSelected} 
                                     selectedMovie={selectedMovie}
                                     isMovieLoading={isMovieLoading} 
