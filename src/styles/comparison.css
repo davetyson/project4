@@ -42,40 +42,48 @@
 }
 
 .refreshButton {
-    border: 1px solid #000;
+    border: 3px solid #000;
     border-radius: 15px;
     margin: 20px auto 0 auto;
     padding: 10px;
     width: 50%;
     font-size: 3rem;
-    color: #5DA9C1;
-    background-color: #000;
-    transition: 0.2s;
+    color: #000;
+    background-color: #5DA9C1;
+    transition: 0.1s;
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
 }
 
 .refreshButton:hover,
 .refreshButton:focus {
     color: #5DA9C1;
-    background-color: #FFF;
+    background-color: #000;
 }
 
 .close {
-    color: #000000;
+    color: #000;
+    background-color: #5DA9C1;
     font-family: 'Roboto', sans-serif;
     font-size: 2rem;
     font-weight: bold;
-    border: 2px solid #000000;
+    border: 2px solid #000;
     border-radius: 5px;
     padding: 3px 8px;
     position: absolute;
     right: 10px;
     top: 10px;
     cursor: pointer;
+    z-index: 10;
+    transition: 0.1s;
+    cursor: pointer;
 }
 
-.close:hover {
+.close:hover,
+.close:focus {
     color: #5DA9C1;
-    background-color: #ffffff;
+    background-color: #000;
 }
 
 
