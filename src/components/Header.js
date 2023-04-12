@@ -1,13 +1,6 @@
-// Header.js 
-
-// import components/CSS:
-    // global.css
-    import '../styles/global.css';
-    // header.css
+import '../styles/global.css';
 import '../styles/header.css';
-    // Logo image
 import logo from '../assets/logo.png';
-
 
 // Declare Header component
 function Header() {
@@ -26,5 +19,4 @@ function Header() {
     );
 }
 
-// export default Header;
 export default Header;

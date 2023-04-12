@@ -16,6 +16,10 @@ const Comparison = ({result, selectedBook, handleClose}) => {
         setWindowSize({width: window.innerWidth, height: window.innerHeight});
     }
 
+    const handleRefresh = () => {
+        window.location.reload(false);
+    };
+
     // useEffect to listen for screen resize, and update the useState with the new size
     useEffect(() => {
         window.addEventListener("resize", detectSize);
@@ -116,7 +120,9 @@ const Comparison = ({result, selectedBook, handleClose}) => {
                         ? <h1>It's a {result}!</h1>
                         : <h1>The {result} is better { result === "movie" ? "🎥" : "📖" }</h1>
                         }
-                        <h2>{comparison}</h2>                         
+                        <h2>{comparison}</h2>
+                        <h2>Refresh the page to search another title!</h2>    
+                        <button className="refreshButton" onClick={handleRefresh}>Search Again</button>                     
                     </>
                 }                         		
 	      	</div>

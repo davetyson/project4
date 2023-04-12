@@ -83,6 +83,7 @@ img {
     max-width: 100%;
     width: auto;
     height: auto;
+    width: auto;
     display: block;
     border: 1px solid #000;
     border-radius: 15px;
