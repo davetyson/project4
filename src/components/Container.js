@@ -5,7 +5,7 @@ import Form from './Form.js'
 
 function Container() {
     return (
-      <div className="app">
+      <div>
         <Header />
         <main className="contentArea">
             <Form />

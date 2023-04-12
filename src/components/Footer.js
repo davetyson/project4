@@ -1,12 +1,8 @@
-// Import CSS
 import '../styles/footer.css';
-
-// Import React hooks
 import { useState, useEffect } from "react";
 
 // Build component
 const Footer = () => {
-
     // Declare state variables
     const [currentYear, setCurrentYear] = useState();
 
